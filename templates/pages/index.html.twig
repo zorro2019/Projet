@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Home' %}
+
+{% block body %}
+    {% include'default/head1.html.twig' %}
+
+    {% include 'default/block-slider.html.twig' %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="offset-md-1 col-md-6">
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <h3 class="text-center">Fret-Online.sn c'est :</h3>
+                <div>
+                    <p class="text-p"><i class="fa fa-handshake-o text-md-left text-primary"></i>&nbsp;&nbsp; Une mise en relation directe et sans intermédiaire entre differents operateurs du transport.</p>
+                    <p class="text-p"><i class="fa fa-clock-o text-md-left text-primary"></i>&nbsp;&nbsp;Une actualisation en temps réel des trajets de véhicules</p>
+                    <p class="text-p"><i class="fa fa-briefcase text-md-left text-primary"></i>&nbsp;&nbsp;Un espace de présentation pour votre entreprise</p>
+                    <p class="text-p"><i class="fa fa-bell text-md-left text-primary"></i>&nbsp;&nbsp;Des alertes en « temps réel » sur les offres de fret et sur les recherches de véhicules</p>
+                    <p class="text-p"><i class="fa fa-phone-square text-md-left text-primary"></i>&nbsp;&nbsp;Plus de contacts et de visibilité avec les annuaires « fret-online.sn »</p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">voir suite &raquo;</a></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <img class="img-index" src="/build/img/12.png" alt="" style="width: 100%; height: 350px;border-radius: 20px">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 80px;">
+            <div class="col-md-4">
+                <h3>Comment ça fonctionne ?</h3>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+    <div class="container mt-4">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Affréteur/Courtier</h4>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title pricing-card-title">0 Fcfa<small class="text-muted"></small></h3>
+                    <ul class="list-unstyled mt-3 mb-4 text-left">
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Notification en temps réel.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Possibilité de poster des offres.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Recherche élargie pour + de résultats.</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Espace de présentation entreprise.</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;3 camions gratuits.</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Incription illimitté camions</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;MAJ trajet vehicule en temps réel.</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Acces aux annuairex entreprises</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Choix type abonnement</li>
+                    </ul>
+                    <a href="{{ path('create_compte') }}" class="text-decoration-none">
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button> </a>
+                </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Transporteurs</h4>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title pricing-card-title">0 Fcfa <small class="text-muted"></small></h3>
+                    <ul class="list-unstyled mt-3 mb-4 text-left">
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Notification en temps réel.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Possibilité de poster des offres.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Recherche élargie pour + de résultats.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Espace de présentation entreprise.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;3 camions gratuits.</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Incription illimitté camions</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;MAJ trajet vehicule en temps réel.</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Acces aux annuairex entreprises</li>
+                        <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Choix type abonnement</li>
+                    </ul>
+                    <a href="{{ path('create_compte') }}" class="text-decoration-none">
+                    <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button></a>
+                </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Transporteur/Pro</h4>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title pricing-card-title">XXXX Fcfa <small class="text-muted">/Camion</small></h3>
+                    <ul class="list-unstyled mt-3 mb-4 text-left">
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Notification en temps réel.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Possibilité de poster des offres.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Recherche élargie pour + de résultats.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Espace de présentation entreprise.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;3 camions gratuits.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Incription illimitté camions</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;MAJ trajet vehicule en temps réel.</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Acces aux annuairex entreprises</li>
+                        <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Choix type abonnement</li>
+                    </ul>
+                    <a href="{{ path('create_compte') }}" class="text-decoration-none">
+                    <button type="button" class="btn btn-lg btn-block btn-primary" >Contact us</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
