@@ -2,11 +2,17 @@
 namespace App\Controller;
 
 use App\Entity\Abonnes;
+use App\Entity\Messages;
+use App\Entity\ReadingMessages;
 use App\Entity\Rechercher;
 use App\Form\LoginAbonnesType;
 use App\Form\RechercherType;
+use App\Repository\AbonnesRepository;
+use App\Repository\DetailsVoyageRepository;
 use App\Repository\MessagesRepository;
+use App\Repository\ReadingMessagesRepository;
 use App\Repository\VoyageRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,19 +31,51 @@ class HomeController extends AbstractController
      * @var MessagesRepository
      */
     private $messagesRepository;
+    /**
+     * @var PaginatorInterface
+     */
     private $paginator ;
+    /**
+     * @var ReadingMessagesRepository
+     */
+    private $unreadRep;
+
+    /**
+     * @var
+     */
+    private $manager;
+
+    /**
+     * @var
+     */
+    private $abonnesRepository;
+
+    /**
+     * @var DetailsVoyageRepository
+     */
+    private $detailRep;
 
     /**
      * HomeController constructor.
      * @param Environment $twig
      * @param MessagesRepository $messagesRepository
      * @param PaginatorInterface $paginator
+     * @param ReadingMessagesRepository $unreadRep
+     * @param ObjectManager $manager
+     * @param AbonnesRepository $abonnesRepository
+     * @param DetailsVoyageRepository $detailRep
      */
-    public function __construct(Environment $twig,MessagesRepository $messagesRepository, PaginatorInterface $paginator)
+    public function __construct(Environment $twig,MessagesRepository $messagesRepository, PaginatorInterface $paginator,
+                                ReadingMessagesRepository $unreadRep, ObjectManager $manager,AbonnesRepository $abonnesRepository,
+                DetailsVoyageRepository $detailRep)
     {
         $this->twig = $twig;
         $this->messagesRepository = $messagesRepository;
         $this->paginator = $paginator;
+        $this->unreadRep = $unreadRep;
+        $this->manager = $manager;
+        $this->abonnesRepository = $abonnesRepository;
+        $this->detailRep = $detailRep;
     }
 
     /**
@@ -75,13 +113,43 @@ class HomeController extends AbstractController
         $search = new  Rechercher();
         $voyage = $repository->findListVoyageActif();
         $form = $this->createForm(RechercherType::class , $search);
+        $recherche = array();
+        $recherche['localite'] = "";
+        $recherche['quant'] = 0;
+        $recherche['type'] = "";
+        $recherche['submit'] = 0;
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+            $recherche['localite'] = $search->getLocalite();
+            $recherche['quant'] = $search->getTonnage();
+            $recherche['type'] = $search->getTypeVehicule();
+            if (empty($search->getLocalite()) && empty($search->getTypeVehicule()) && !empty($search->getTonnage())){
+                $recherche['submit'] = 2;
+            }
+            if (empty($search->getLocalite()) && !empty($search->getTypeVehicule()) && empty($search->getTonnage())){
+                $recherche['submit'] = 3;
+            }
+            if (empty($search->getLocalite()) && !empty($search->getTypeVehicule()) && !empty($search->getTonnage())){
+                $recherche['submit'] = 4;
+            }
+            if (!empty($search->getLocalite()) && empty($search->getTypeVehicule()) && empty($search->getTonnage())){
+                $recherche['submit'] = 5;
+            }
+            if (!empty($search->getLocalite()) && empty($search->getTypeVehicule()) && !empty($search->getTonnage())){
+                $recherche['submit'] = 6;
+            }
+            if (!empty($search->getLocalite()) && !empty($search->getTypeVehicule()) && empty($search->getTonnage())){
+                $recherche['submit'] = 7;
+            }
+            if (!empty($search->getLocalite()) && !empty($search->getTypeVehicule()) && !empty($search->getTonnage())){
+                $recherche['submit'] = 8;
+            }
 
         }
         return $this->render('pages/fret-en-direct.html.twig',[
             'form' => $form->createView(),
-            'voyages' => $voyage
+            'voyages' => $voyage,
+            'search' => $recherche
         ]);
     }
 
@@ -94,6 +162,26 @@ class HomeController extends AbstractController
     {
         $user = $this->getUser();
         $listPagine = $this->paginator($request);
+        if (isset($_REQUEST['valider'])){
+           $message = new Messages();
+           $message->setTitle($_POST['titre']);
+           $message->setIdAbonne($user);
+           $message->setCreateAt(new \DateTime('now'));
+           $message->setContenu($_POST['message']);
+           $this->manager->persist($message);
+           $this->manager->flush();
+           $users = $this->abonnesRepository->findAll();
+           foreach ($users as $u){
+               if ($u->getId() != $user->getid()){
+                   $Inread = new ReadingMessages();
+                   $Inread->setIdAbonne($u->getId());
+                   $Inread->setIdMessage($message);
+                   $Inread->setReaded(0);
+                   $this->manager->persist($Inread);
+                   $this->manager->flush();
+               }
+           }
+        }
         return $this->render('pages/alert-fret.html.twig',[
             'listePagine' => $listPagine,
             'user' => $user
@@ -112,5 +200,31 @@ class HomeController extends AbstractController
             4
         );
         return $pagination;
+    }
+
+    /**
+     * @Route(path="/espace/read/{id}",name="read.alert")
+     * @param $id
+     * @param Messages $messages
+     * @return Response
+     */
+    public function read($id, Messages $messages)
+    {
+        $abonne = $this->getUser();
+        if ($abonne != null){
+            $messageUnread = $this->unreadRep->findMessagesInread($abonne->getid());
+            foreach ($messageUnread as $item){
+                if ($item->getIdMessage()->getId() == $id){
+                    $item->setReaded(true);
+                    $abonne->setNbreMessageInread($abonne->getNbreMessageInread() - 1);
+                    $this->manager->persist($item);
+                    $this->manager->flush();
+                }
+            }
+        }
+        return $this->render('pages/read.html.twig',[
+            'message' => $messages,
+            'user' => $abonne
+        ]);
     }
 }

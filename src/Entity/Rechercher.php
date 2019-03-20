@@ -1,10 +1,10 @@
 <?php
 namespace App\Entity;
+
 class Rechercher{
     private $localite;
     private $tonnage;
     private $typeVehicule;
-
     public function __construct()
     {
 
@@ -56,6 +56,11 @@ class Rechercher{
     public function setTypeVehicule($typeVehicule): void
     {
         $this->typeVehicule = $typeVehicule;
+    }
+
+    public function getTypeData()
+    {
+
     }
 
 

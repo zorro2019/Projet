@@ -44,6 +44,7 @@ class Entreprise
      */
     private $img;
     /**
+     * @Assert\Image(mimeTypes="image/jpeg")
      * @var File|null
      * @Vich\UploadableField( mapping="entreprise_logo",fileNameProperty="img")
      */

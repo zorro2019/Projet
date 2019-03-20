@@ -238,5 +238,18 @@ class Voyage
         return $this;
     }
 
+    public function getQuantiteDetail()
+    {
+        $total = $this->getQuantite();
+        foreach ($this->getListeDetailVoyage() as $dt){
+            if ($dt->getCharge() != null){
+                $total = $total+$dt->getCharge();
+            }
+            if ($dt->getDecharge() != null){
+                $total = $total-$dt->getDecharge();
+            }
+        }
+        return $total;
+    }
 
 }

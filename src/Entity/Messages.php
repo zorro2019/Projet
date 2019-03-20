@@ -95,7 +95,7 @@ class Messages
     }
 
     public function getExtrait(){
-        return substr($this->getContenu(),0,50);
+        return substr($this->getContenu(),0,100);
     }
 
     public function getTitle(): ?string

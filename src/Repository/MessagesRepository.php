@@ -43,7 +43,7 @@ class MessagesRepository extends ServiceEntityRepository
     public function findLastMessageQuery()
     {
         return $this->createQueryBuilder('m')
-            ->orderBy('m.create_at', 'ASC')
+            ->orderBy('m.create_at', 'DESC')
             ->getQuery()
             ;
     }

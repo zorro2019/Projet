@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{%  block title 'essai' %}
+{%  block title 'Home' %}
 
 {% block slider '' %}
 {% block body %}
@@ -48,7 +48,7 @@
         <header class="nav-holder make-sticky">
             <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
                 <div class="container"><a href="{{ path('home') }}" class="navbar-brand home">
-                        <h2 alt="Universal logo" class="d-none d-md-inline-block"><br>Frêt Online</h2>
+                        <h2 class="d-none d-md-inline-block"><br>Frêt Online</h2>
                         </a>
                     <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
                     <div id="navigation" class="navbar-collapse collapse">
@@ -94,7 +94,7 @@
                         <p class="text-p text-left"><i class="fa fa-briefcase text-md-left text-primary"></i>&nbsp;&nbsp;Un espace de présentation pour votre entreprise</p>
                         <p class="text-p text-left"><i class="fa fa-bell text-md-left text-primary"></i>&nbsp;&nbsp;Des alertes en « temps réel » sur les offres de fret et sur les recherches de véhicules</p>
                         <p class="text-p text-left"><i class="fa fa-phone-square text-md-left text-primary"></i>&nbsp;&nbsp;Plus de contacts et de visibilité avec les annuaires « fret-online.sn »</p>
-                        <p><a href="#" class="btn btn-template-main">Lire plus</a></p>
+                        <p><a href="{{ path('faq') }}" class="btn btn-template-main">Lire plus</a></p>
                     </div>
                     <div class="col-md-6 text-center"><img src="/build/img/15.jpg" alt="" class="img-fluid"></div>
                 </div>
@@ -124,7 +124,7 @@
                                 <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;MAJ trajet vehicule en temps réel.</li>
                                 <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Acces aux annuairex entreprises</li>
                                 <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Choix type abonnement</li>
-                            </ul><a href="#" class="btn btn-template-outlined">Sign Up</a>
+                            </ul><a href="{{ path('create_compte') }}" class="btn btn-template-outlined">Créer compte</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -145,7 +145,7 @@
                                 <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;MAJ trajet vehicule en temps réel.</li>
                                 <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Acces aux annuairex entreprises</li>
                                 <li><i class="fa fa-close" style="color:#a71d2a;"></i>&nbsp;Choix type abonnement</li>
-                            </ul><a href="#" class="btn btn-template-outlined">Sign Up</a>
+                            </ul><a href="{{ path('create_compte') }}" class="btn btn-template-outlined">Créer compte</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -166,7 +166,7 @@
                                 <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;MAJ trajet vehicule en temps réel.</li>
                                 <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Acces aux annuairex entreprises</li>
                                 <li><i class="fa fa-check-circle" style="color:#2C3E50;"></i>&nbsp;Choix type abonnement</li>
-                            </ul><a href="#" class="btn btn-template-outlined">Sign Up</a>
+                            </ul><a href="{{ path('create_compte') }}" class="btn btn-template-outlined">Créer compte</a>
                         </div>
                     </div>
                 </div>

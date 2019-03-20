@@ -26,6 +26,12 @@
                                 {% if app.user == false %}
                                     <a href="{{ path('create_compte') }}" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Créer un compte</span></a>
                                 {% endif %}
+                                {% if app.user  %}
+                                    <a href="{{ path('user_espace') }}" class="login-btn">Mon Espace &nbsp;<i class="fa fa-user-o"></i></a>
+                                {% endif %}
+                                {% if app.user  %}
+                                    <a href="{{ path('logout') }}" class="login-btn">Déconnection&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a>
+                                {% endif %}
                             </div>
                             <ul class="social-custom list-inline">
                                 <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -133,12 +139,15 @@
                         </div>
                     </div>
                     <div class="col-md-9 tab-content profile-tab mt-5" id="myTabContent">
-                        <div class="tab-pane fade show active mt-2 mb-2 ml-2 mr-2" id="info" role="tabpanel"
+                        <div class="tab-pane fade {% if not active['transport'] and not active['detail'] and not active['page'] %} show active {% endif %} mt-2 mb-2 ml-2 mr-2" id="info" role="tabpanel"
                              aria-labelledby="info-tab">
                             <div class="heading">
                                 <h5>Nouveau vehicule / Modification</h5>
                             </div>
                             <div class="small">
+                                {% for message in app.flashes('success') %}
+                                    <p class="alert alert-success text-center">{{ message }}</p>
+                                {% endfor %}
                                 {{ form_start(form) }}
                                 <div class="card-body">
                                     <div class="form-row align-items-end">
@@ -177,33 +186,35 @@
                                             <div>{{ form_widget(form.telChauffeur)}}</div>
                                         </div>
                                     </div>
-                                    {% if nombre >= 3 %}
+                                    {% if nombre >= 3 and app.request.get('id') == null %}
                                         <div class="form-row align-items-end">
                                             <div class="col-md-6 form-group">
-                                                <label for="">Type Abonne</label>
+                                                <label class="text-danger" for="">Type Abonne</label>
                                                 <select name="typeAb" id="type" class="form-control" onchange="change();">
                                                     <option value="" selected></option>
-                                                    <option value="5000">Mensuel</option>
-                                                    <option value="15000">Trimestruel</option>
-                                                    <option value="30000">Semestruel</option>
-                                                    <option value="50000">Annuel</option>
+                                                    {% for op in toatalAbonnement %}
+                                                        <option value="{{ op.montant }}">{{ op.typeAbonnement }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <div class="col-md-6 form-group">
-                                                <label for="">Type Abonne</label>
-                                                <input type="text" class="form-control" id="idAbonnes" value="">
+                                                <label class="text-danger" for="">Montant</label>
+                                                <input disabled type="text" class="form-control" id="idAbonnes" value="">
                                             </div>
                                         </div>
                                     {% endif %}
                                     <div class=" ">
                                         {{ form_rest(form) }}
                                         <button type="submit" class="btn btn-primary btn-labeled pull-right">Valider&nbsp;<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
+                                        {% if nombre > 3 and app.request.get('id') == null %}
+                                            <p class="small text-danger">Vous avez atteint le nombre de vehicule gratuit.</p>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 {{ form_end(form) }}
                             </div>
                         </div>
-                        <div class="tab-pane fade mt-2 mb-2 ml-2 mr-2" id="post" role="tabpanel"
+                        <div class="tab-pane fade {% if active['page'] %} show active {% endif %} mt-2 mb-2 ml-2 mr-2" id="post" role="tabpanel"
                              aria-labelledby="post-tab">
                             <div class="heading">
                                 <h5>Liste de Vehicule</h5>
@@ -271,7 +282,7 @@
                                         {% if vg.status == 1 %}
                                             {% for dt in vg.listeDetailVoyage %}
                                                 {% if dt.position == 1 %}
-                                                    <tr>
+                                                    <tr class="tab-trajet">
                                                         <td class="text-center" id="headingOne" role="tab" style="background-color:rgba(255,81,46,0.14);width: 2px;">
                                                             <a data-toggle="collapse" href="#td{{ dt.id }}" aria-expanded="true" aria-controls="td{{ dt.id }}">
                                                                 <i style="color: green;font-size: 20px;" class="fa fa-plus-circle"></i>
@@ -286,16 +297,27 @@
                                                                 Citerne
                                                             {% endif %}
                                                             {% if dt.idVoyage.idVehicule.typeVehicule == 3 %}
-                                                                Camion firgorifique
+                                                                Camion frigorifique
                                                             {% endif %}
                                                         </td>
                                                         <td style="background-color: rgba(156,255,80,0.14);">{{ dt.ville }}</td>
-                                                        <td style="background-color: rgba(255,57,254,0.18);">{{ dt.idVoyage.quantite }}</td>
+                                                        <td style="background-color: rgba(255,57,254,0.18);">{{ dt.idVoyage.quantiteDetail }}</td>
                                                         <td style="background-color:rgba(156,255,80,0.22);">{{ dt.dateDepart.format('d/m/y') }}</td>
                                                     </tr>
                                                     <tr id="td{{ dt.id }}" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" class="collapse">
-                                                        <td style="background-color: rgba(161,255,217,0.21);" colspan="5">
-                                                            <a class="text-decoration-none" href="#">Voir detail vehicule</a>
+                                                        <td style="background-color: rgba(255,235,244,0.18)" colspan="5">
+                                                            <p>
+                                                                Cet vehicule a commencé son voyage le {{ dt.idVoyage.debutAt.format('d/m/y') }} en partant de {{ dt.idVoyage.villedepart }} à destination de {{ dt.idVoyage.villearrive }}. Il transporte du {{ dt.idVoyage.produits }}
+                                                                Il se trouve actuellement à {{ dt.ville }} avec une charge de {{ dt.idVoyage.quantiteDetail }} tonnes.
+                                                            </p>
+                                                            <span class="text-bold text-warning pull-left">Information sur le chauffeur : <br>Nom : {{ dt.idVoyage.idVehicule.nomChauffeur }}
+                                                                <br>
+                                                            Tel : {{ dt.idVoyage.idVehicule.telChauffeur }}
+                                                            </span>
+                                                            <span class="text-bold text-warning pull-right">Information sur le transporteur : <br>Nom : {{ dt.idVoyage.idVehicule.idAbonne.nom }}
+                                                                <br>
+                                                                Tel : {{ dt.idVoyage.idVehicule.idAbonne.telephone }}
+                                                            </span>
                                                         </td>
                                                     </tr>
                                                 {% endif %}
@@ -306,7 +328,7 @@
 
                             </table>
                         </div>
-                        <div class="tab-pane fade mt-2 mb-2 ml-2 mr-2" id="transport" role="tabpanel"
+                        <div class="tab-pane fade {% if active['transport'] %} show active{% endif %} mt-2 mb-2 ml-2 mr-2" id="transport" role="tabpanel"
                              aria-labelledby="transport-tab">
                             <div class="heading"><h5>Information transport</h5></div>
                             <div class="small">
@@ -358,12 +380,12 @@
                                         </div>
                                     </div>
                                     {{ form_rest(formVehicule) }}
-                                    <button type="submit" class="btn btn-primary btn-labeled pull-right">Valider&nbsp;<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
+                                    <button type="submit" name="validerTransport" value="transport" class="btn btn-primary btn-labeled pull-right">Valider&nbsp;<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
                                     {{ form_end(formVehicule) }}
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade mt-2 mb-2 ml-2 mr-2" id="detail" role="tabpanel"
+                        <div class="tab-pane fade {% if active['detail'] %} show active{% endif %} mt-2 mb-2 ml-2 mr-2" id="detail" role="tabpanel"
                              aria-labelledby="detail-tab">
                             <div class="heading"><h5>Detail transport</h5></div>
                             <div class="small">
@@ -378,13 +400,13 @@
                                             {% for vh in user.listeVehicule %}
                                                 {% for vg in vh.voyage  %}
                                                     {% if vg.status == 1 %}
-                                                        <option value=""{{ vg.id }}>{{ vg.idVehicule.matricule }}</option>
+                                                        <option value="{{ vg.id }}">{{ vg.idVehicule.matricule }}</option>
                                                     {% endif %}
                                                 {% endfor %}
                                             {% endfor %}
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-labeled pull-right">Valider&nbsp;<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
+                                    <button type="submit" name="valideDetail" value="detail" class="btn btn-primary btn-labeled pull-right">Valider&nbsp;<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
                                     {{ form_end(formDetail) }}
                                 </div>
                             </div>
@@ -402,7 +424,7 @@
        function change() {
            var type = document.getElementById('type').value;
            var  prix = document.getElementById('idAbonnes');
-           prix.setAttribute('value' , type);
+           prix.setAttribute('value' , type+' fcfa');
         }
     </script>
 {% endblock %}
