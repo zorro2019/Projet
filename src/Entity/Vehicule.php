@@ -71,29 +71,24 @@ class Vehicule
     private $voyage;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $typeVehicule;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $creat_at;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $NomChauffeur;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $TelChauffeur;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Abonnement", mappedBy="vehicule")
      */
     private $abonnement;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeVehicule")
+     */
+    private $typeVehicule;
 
     public function __construct()
     {
@@ -104,18 +99,6 @@ class Vehicule
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMatricule(): ?string
-    {
-        return $this->matricule;
-    }
-
-    public function setMatricule(string $matricule): self
-    {
-        $this->matricule = $matricule;
-
-        return $this;
     }
 
     public function getModel(): ?string
@@ -197,16 +180,12 @@ class Vehicule
         return $this;
     }
 
-    public function getTypeVehicule(): ?int
+    /**
+     * @param mixed $type_vehicule
+     */
+    public function setTypeVehicule($type_vehicule): void
     {
-        return $this->typeVehicule;
-    }
-
-    public function setTypeVehicule(int $typeVehicule): self
-    {
-        $this->typeVehicule = $typeVehicule;
-
-        return $this;
+        $this->typeVehicule = $type_vehicule;
     }
 
     public function getCreatAt(): ?\DateTimeInterface
@@ -218,30 +197,6 @@ class Vehicule
     {
         $this->creat_at = $creat_at;
         $this->creat_at = new \DateTime('now');
-        return $this;
-    }
-
-    public function getNomChauffeur(): ?string
-    {
-        return $this->NomChauffeur;
-    }
-
-    public function setNomChauffeur(?string $NomChauffeur): self
-    {
-        $this->NomChauffeur = $NomChauffeur;
-
-        return $this;
-    }
-
-    public function getTelChauffeur(): ?string
-    {
-        return $this->TelChauffeur;
-    }
-
-    public function setTelChauffeur(?string $TelChauffeur): self
-    {
-        $this->TelChauffeur = $TelChauffeur;
-
         return $this;
     }
 
@@ -259,7 +214,6 @@ class Vehicule
             $this->abonnement[] = $abonnement;
             $abonnement->addVehicule($this);
         }
-
         return $this;
     }
 
@@ -272,4 +226,37 @@ class Vehicule
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTypeVehicule(): ?TypeVehicule
+    {
+        return $this->typeVehicule;
+    }
+
+
+    public function getMatricule()
+    {
+        return $this->matricule;
+    }
+
+    /**
+     * @param string $matricule
+     */
+    public function setMatricule(string $matricule): void
+    {
+        $this->matricule = $matricule;
+    }
+
+
 }

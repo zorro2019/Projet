@@ -1428,8 +1428,7 @@ header.nav-holder.sticky {
 }
 
 .box.shipping-method, .box.payment-method {
-  margin: 0;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
 }
 
 .box.shipping-method h4, .box.payment-method h4 {
@@ -1889,7 +1888,7 @@ table tr td {
   right: 15px;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  font-family: 'FontAwesome';
+  font-family: 'FontAwesome', sans-serif;
 }
 
 .panel-heading {
@@ -1997,7 +1996,6 @@ ul ul a.nav-link {
   letter-spacing: 0.1em;
   font-weight: 600;
   padding: 5px 10px;
-  text-transform: uppercase;
   margin: 3px 0;
   text-decoration: none !important;
 }
@@ -2831,8 +2829,7 @@ STYLE SWITCHER FOR DEMO
 
 .btn-outline-dark {
   color: #343a40;
-  background-color: transparent;
-  background-image: none;
+  background: transparent none;
   border-color: #343a40;
 }
 
@@ -3547,4 +3544,39 @@ a > code {
     margin-right: 15px;
     margin-left: 15px;
   }
+}
+
+
+/* PROFILE PAGE CONF */
+.profile-pic img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border: 10px solid #f1f2f7;
+  margin-top: 20px;
+}
+
+.profile-text h6 {
+  margin-top: -10px;
+  margin-bottom: 20px;
+  color: #d3d3d3;
+}
+
+.profile-text h3 {
+  font-weight: 700;
+  color: #48cfad;
+}
+
+.profile-text h4 {
+  color: #48cfad;
+}
+
+.profile-text p {
+  margin-left: 10px;
+}
+
+.right-divider {
+  border-right: 1px solid #d3d3d3;
+  height: 100%;
 }

@@ -94,7 +94,7 @@
             </div>
         </header>
         <!-- Navbar End-->
-        <div id="heading-breadcrumbs">
+        <div id="heading-breadcrumbs" style="background-image: url('/build/img/15.jpg')">
             <div class="container">
                 <div class="row d-flex align-items-center flex-wrap">
                     <div class="col-md-7">
@@ -123,9 +123,11 @@
                     {% for message in listePagine %}
                         <div class="pull-left ">
                             <a href="#">
-                                <img class="media-object img-circle"
-                                     src="{{ vich_uploader_asset(message.idAbonne, 'imageProfil') }}" width="50px"
-                                     height="50px" style="margin-right:8px; margin-top:-5px;">
+                                {% if message.idAbonne.file != null %}
+                                    <img class="media-object img-circle"
+                                         src="{{ vich_uploader_asset(message.idAbonne, 'imageProfil') }}" width="50px"
+                                         height="50px" style="margin-right:8px; margin-top:-5px;">
+                                {% endif %}
                             </a>
                         </div>
                         <h4><a href="#" style="text-decoration:none;"><strong>{{ message.idAbonne.nom }}</strong></a> –
@@ -141,7 +143,7 @@
                     </span>
                         <hr>
                         <div class="post-content">
-                            <p>{{ message.title }}</p>
+                            <p><i class="fa fa-angle-right"></i><strong> Titre </strong>: {{ message.title }}</p>
                             <p>{{ message.extrait }}... <a class="text-decoration-none" href="{{ path('read.alert',{id:message.id}) }}">Lire la suite</a></p>
                         </div>
                         <hr>
@@ -177,14 +179,14 @@
                         </div>
                         <hr style="background-color: black" class="mt-5 mb-5">
                     {% endfor %}
-                    {% if listePagine.getTotalItemCount > 4 %}
-                        <div class="text-center">
+                    {% if listePagine.getTotalItemCount > 3 %}
+                        <div class="text-center mb-5">
                             {{ knp_pagination_render(listePagine) }}
                         </div>
                     {% endif %}
                 </div>
                 {% if app.user != null %}
-                    <div class="card col-md-4 mt-3">
+                    <div class="card col-md-4 mt-3 border-0">
                         <form action="{{ path('alert.fret') }}" method="post">
                         <div class="mb-3"></div>
                         <div class="heading"><h3>Créer une alerte</h3></div>

@@ -2,6 +2,10 @@
 
 {% block title 'Gestion vehicule' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+{% endblock %}
 {% block slider '' %}
 
 {% block body %}
@@ -132,14 +136,19 @@
                                     <li class="nav-item">
                                         <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab"
                                            aria-controls="detail" aria-selected="false"><i
-                                                    class="fa fa-archive"></i>Ajouter Detail Transport</a>
+                                                    class="fa fa-unlink"></i> Ajouter Detail Transport</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="chauffeur-tab" data-toggle="tab" href="#chauffeur" role="tab"
+                                           aria-controls="chauffeur" aria-selected="false"><i
+                                                    class="fa fa-vcard"></i> Ajouter Chauffeur</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-9 tab-content profile-tab mt-5" id="myTabContent">
-                        <div class="tab-pane fade {% if not active['transport'] and not active['detail'] and not active['page'] %} show active {% endif %} mt-2 mb-2 ml-2 mr-2" id="info" role="tabpanel"
+                        <div class="tab-pane fade {% if active['transport'] == 0 and active['detail'] == 0 and  active['page'] == 0 %} show active {% endif %} mt-2 mb-2 ml-2 mr-2" id="info" role="tabpanel"
                              aria-labelledby="info-tab">
                             <div class="heading">
                                 <h5>Nouveau vehicule / Modification</h5>
@@ -152,7 +161,7 @@
                                 <div class="card-body">
                                     <div class="form-row align-items-end">
                                         <div class="col-md-6 form-group">
-                                            <label for="">Matricule</label>
+                                            <label for="">Immatricule</label>
                                             {{ form_errors(form.matricule) }}
                                             <div>{{ form_widget(form.matricule) }}</div>
                                         </div>
@@ -164,32 +173,35 @@
                                     </div>
                                     <div class="form-row align-items-end">
                                         <div class="col-md-6 form-group">
-                                            <label for="">Age</label>
+                                            <label for="">Mise en circulation</label>
                                             <div>{{ form_errors(form.ageVehicule) }}</div>
                                             <div>{{ form_widget(form.ageVehicule) }}</div>
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="">Type Vehicule</label>
-                                            <div>{{ form_errors(form.typeVehicule) }}</div>
-                                            <div>{{ form_widget(form.typeVehicule) }}</div>
+                                            <select name="typeVehicule" id="" class="form-control">
+                                                {% for type in typeVehicule %}
+                                                    <option value="{{ type.id }}">{{ type.libelle }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-row align-items-end">
                                         <div class="col-md-6 form-group">
-                                            <label for="">Nom Chauffeur</label>
-                                            <div>{{ form_errors(form.nomChauffeur) }}</div>
-                                            <div>{{ form_widget(form.nomChauffeur)}}</div>
+                                            <label for="">Model</label>
+                                            <div>{{ form_errors(form.model) }}</div>
+                                            <div>{{ form_widget(form.model) }}</div>
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label for="">Tel Chauffeur</label>
-                                            <div>{{ form_errors(form.telChauffeur) }}</div>
-                                            <div>{{ form_widget(form.telChauffeur)}}</div>
+                                            <label for="">Description</label>
+                                            <div>{{ form_errors(form.description) }}</div>
+                                            <div>{{ form_widget(form.description) }}</div>
                                         </div>
                                     </div>
                                     {% if nombre >= 3 and app.request.get('id') == null %}
                                         <div class="form-row align-items-end">
                                             <div class="col-md-6 form-group">
-                                                <label class="text-danger" for="">Type Abonne</label>
+                                                <label class="text-danger" for="">Type Abonnement</label>
                                                 <select name="typeAb" id="type" class="form-control" onchange="change();">
                                                     <option value="" selected></option>
                                                     {% for op in toatalAbonnement %}
@@ -226,8 +238,8 @@
                                         <th>Type</th>
                                         <th>Tonnage</th>
                                         <th>Age</th>
-                                        <th>Nom Chauffeur</th>
-                                        <th>Tel Chauffeur</th>
+                                        <th>Model</th>
+                                        <th>Description</th>
                                         <th>Editer</th>
                                         <th>Delete</th>
                                     </tr>
@@ -235,20 +247,14 @@
                                         <tr class="link-camion">
                                             <td>{{ vh.matricule }}</td>
                                             <td>
-                                                {% if vh.typeVehicule == 1 %}
-                                                    Camion
-                                                {% endif %}
-                                                {% if vh.typeVehicule == 2 %}
-                                                    Citerne
-                                                {% endif %}
-                                                {% if vh.typeVehicule == 3 %}
-                                                    Camion Frigorifique
+                                                {% if vh.typeVehicule != null %}
+                                                    {{ vh.typeVehicule.libelle }}
                                                 {% endif %}
                                             </td>
                                             <td>{{ vh.tonnage }}</td>
                                             <td>{{ vh.ageVehicule }}</td>
-                                            <td>{{ vh.nomChauffeur }}</td>
-                                            <td>{{ vh.telChauffeur }}</td>
+                                            <td>{{ vh.model }}</td>
+                                            <td>{{ vh.description }}</td>
                                             <td ><a class="text-decoration-none " href="{{ path('edit.vehicule',{id:vh.id}) }}" style="color: orange"><i class="fa fa-pencil"></i></a></td>
                                             <td >
                                                 <a class="text-decoration-none " href="{{ path('delete.vehicule',{id:vh.id}) }}" style="color: #a71d2a" onclick=" return confirm('Êtes-vous sûr ?')">
@@ -268,11 +274,12 @@
                         </div>
                         <div class="tab-pane fade mt-2 mb-2 ml-2 mr-2" id="trajet" role="tabpanel"
                              aria-labelledby="trajet-tab">
+                            <div class="heading mt-1 mb-3"><h5>Vehicules en cours de voyage</h5></div>
                             <table class="table tabe-streped" id="accordion" role="tablist">
                                 <tr>
                                     <th style="background-color: rgba(255,214,43,0.27);">Detail</th>
                                     <th style="background-color: rgba(254,168,255,0.27);">Matricule</th>
-                                    <th style="background-color: rgba(126,209,255,0.27);">Type Vehicule</th>
+                                    <th style="background-color: rgba(126,209,255,0.27);">Vehicule</th>
                                     <th style="background-color: rgba(255,202,34,0.27);">Ville</th>
                                     <th style="background-color: rgba(195,255,146,0.27)">Quantite</th>
                                     <th style="background-color: rgba(255,189,242,0.27);">Date</th>
@@ -290,31 +297,32 @@
                                                         </td>
                                                         <td style="background-color:rgba(156,255,80,0.22);">{{ dt.idVoyage.idVehicule.matricule }}</td>
                                                         <td style="background-color: rgba(80,255,65,0.14);">
-                                                            {% if dt.idVoyage.idVehicule.typeVehicule == 1 %}
-                                                                Camion
+                                                            {% if dt.idVoyage.idVehicule.typeVehicule != null %}
+                                                                {{ dt.idVoyage.idVehicule.typeVehicule.libelle }}
                                                             {% endif %}
-                                                            {% if dt.idVoyage.idVehicule.typeVehicule == 2 %}
-                                                                Citerne
-                                                            {% endif %}
-                                                            {% if dt.idVoyage.idVehicule.typeVehicule == 3 %}
-                                                                Camion frigorifique
-                                                            {% endif %}
+
                                                         </td>
                                                         <td style="background-color: rgba(156,255,80,0.14);">{{ dt.ville }}</td>
                                                         <td style="background-color: rgba(255,57,254,0.18);">{{ dt.idVoyage.quantiteDetail }}</td>
                                                         <td style="background-color:rgba(156,255,80,0.22);">{{ dt.dateDepart.format('d/m/y') }}</td>
                                                     </tr>
                                                     <tr id="td{{ dt.id }}" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" class="collapse">
-                                                        <td style="background-color: rgba(255,235,244,0.18)" colspan="5">
-                                                            <p>
+                                                        <td style="background-color: rgba(255,235,244,0.18)" colspan="5" class="col-md-12">
+                                                            <p >
                                                                 Cet vehicule a commencé son voyage le {{ dt.idVoyage.debutAt.format('d/m/y') }} en partant de {{ dt.idVoyage.villedepart }} à destination de {{ dt.idVoyage.villearrive }}. Il transporte du {{ dt.idVoyage.produits }}
                                                                 Il se trouve actuellement à {{ dt.ville }} avec une charge de {{ dt.idVoyage.quantiteDetail }} tonnes.
                                                             </p>
-                                                            <span class="text-bold text-warning pull-left">Information sur le chauffeur : <br>Nom : {{ dt.idVoyage.idVehicule.nomChauffeur }}
+                                                            <p>Details: <br>
+                                                                {% for chaqD in dt.idVoyage.listeDetailVoyage %}
+                                                                    - Ville : {{ chaqD.ville}} Date : {{ chaqD.dateDepart.format('d/m/y') }} {% if chaqD.charge != null%} Charge: {{ chaqD.charge }}{% endif %}{% if chaqD.decharge != null%} Decharge : {{ chaqD.decharge }}{% endif %}
+                                                                    <br>
+                                                                {% endfor %}
+                                                            </p>
+                                                            <span class="text-bold text-dark pull-left">Information sur le chauffeur : <br>Nom :{{ dt.idVoyage.idChauffeur.nom }}
                                                                 <br>
-                                                            Tel : {{ dt.idVoyage.idVehicule.telChauffeur }}
+                                                            Tel : {{ dt.idVoyage.idChauffeur.Tel }}
                                                             </span>
-                                                            <span class="text-bold text-warning pull-right">Information sur le transporteur : <br>Nom : {{ dt.idVoyage.idVehicule.idAbonne.nom }}
+                                                            <span class="text-bold text-dark pull-right">Information sur le transporteur : <br>Nom : {{ dt.idVoyage.idVehicule.idAbonne.nom }}
                                                                 <br>
                                                                 Tel : {{ dt.idVoyage.idVehicule.idAbonne.telephone }}
                                                             </span>
@@ -335,10 +343,10 @@
                                 {{ form_start(formVehicule) }}
                                 <div class="card-body">
                                     <h5><i class="fa fa-angle-right">&nbsp;Remarque:</i></h5>
-                                    <p class="text-small alert-warning mb-3">Cette partie permet d'enregistrer chaque voyage d'un vehicule.Pour ajouter un détail à un voyage déjà en cours c'est la partie Detail Voyage.</p>
+                                    <p class="text-small alert-warning mb-3">Cette partie permet d'enregistrer chaque voyage d'un vehicule, elle met fin au preccedent voyage.Pour ajouter un détail à un voyage déjà en cours c'est la partie Detail Voyage.</p>
                                     <div class="form-row align-items-end">
                                         <div class="col-md-6 form-group">
-                                            <label for="">Matricule Vehicule</label>
+                                            <label for="">Immatricule Vehicule</label>
                                             <div>
                                                 <select name="idVehicule" id="" class="form-control" >
                                                     {% for vh in user.listeVehicule %}
@@ -348,7 +356,15 @@
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="">Quantié</label>
-                                            <div>{{ form_errors(formVehicule.quantite) }}</div>
+                                            {% if sub_error['quant'] != null %}
+                                                <div class="small text-danger">
+                                                    <span class="bg-danger text-white font-weight-bold" style=";border-radius: 5px;">
+                                                    ERREUR</span> {{ sub_error['quant'] }}
+                                                </div>
+                                            {% endif %}
+                                            {% if sub_error['quant'] == null %}
+                                                <div>{{ form_errors(formVehicule.quantite) }}</div>
+                                            {% endif %}
                                             <div>{{ form_widget(formVehicule.quantite) }}</div>
                                         </div>
                                     </div>
@@ -364,19 +380,27 @@
                                         </div>
                                     </div>
                                     <div class="form-row align-items-end">
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-6 form-group">
                                             <label for="">Date Départ</label>
-                                            <div>{{ form_errors(formVehicule.debutAt) }}</div>
-                                            <div>{{ form_widget(formVehicule.debutAt) }}</div>
+                                             <div class="input-group input-append date" id="datePicker">
+                                                 <input type="text" class="form-control" name="date" />
+                                                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                             </div>
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <div>{{ form_errors(formVehicule.nouveauVoyage) }}</div>
-                                            <div>{{ form_widget(formVehicule.nouveauVoyage) }}</div>
-                                        </div>
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-6 form-group">
                                             <label for="">Produits Transporté</label>
                                             <div>{{ form_errors(formVehicule.produits) }}</div>
                                             <div>{{ form_widget(formVehicule.produits) }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row align-items-end">
+                                        <div class="col-md-6 form-group">
+                                            <label for="" class="font-weight-bold">Chauffeur</label>
+                                            <select name="chauffeur" id="" class="form-control">
+                                                {% for ch in user.Chauffeurs %}
+                                                    <option value="{{ ch.id }}">{{ ch.nom }} {{ ch.prenom }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
                                     {{ form_rest(formVehicule) }}
@@ -393,22 +417,89 @@
                                 <div class="card-body">
                                     <h5><i class="fa fa-angle-right">&nbsp;Remarque:</i></h5>
                                     <p class="text-small alert-warning mb-3">Cette partie permet d'enregistrer les détails d'un voyage en cours (chargement, dechargement) et eventuellement déterminer la position actuelle du vehicule.</p>
-                                    {{ form_rest(formDetail) }}
-                                    <div class="form-group">
-                                        <label for="">Choisir un vehicule en cours de voyage</label>
-                                        <select name="idvoyage" id="" class="form-control">
-                                            {% for vh in user.listeVehicule %}
-                                                {% for vg in vh.voyage  %}
-                                                    {% if vg.status == 1 %}
-                                                        <option value="{{ vg.id }}">{{ vg.idVehicule.matricule }}</option>
-                                                    {% endif %}
+                                    <div class="form-row align-items-end mt-3">
+                                        <div class="form-group col-md-6">
+                                            <label for="">Choisir un vehicule en cours de voyage</label>
+                                            <select name="idvoyage" id="" class="form-control">
+                                                {% for vh in user.listeVehicule %}
+                                                    {% for vg in vh.voyage  %}
+                                                        {% if vg.status == 1 %}
+                                                            <option value="{{ vg.id }}">{{ vg.idVehicule.matricule }}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
                                                 {% endfor %}
-                                            {% endfor %}
-                                        </select>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="" class="font-weight-bold">Ville</label>
+                                            <div>{{ form_widget(formDetail.ville) }}</div>
+                                        </div>
                                     </div>
+                                    <div class="form-row align-items-end">
+                                        <div class="form-group col-md-6">
+                                            <label for="" class="font-weight-bold">Tonne Chargée</label>
+                                            {% if sub_error['total'] != null %}
+                                                <div class="small text-danger">
+                                                    <span class="bg-danger text-white font-weight-bold" style=";border-radius: 5px;">
+                                                    ERREUR</span> {{ sub_error['total'] }}
+                                                </div>
+                                            {% endif %}
+                                            {% if sub_error['total'] == null %}
+                                                <div>{{ form_errors(formDetail.charge) }}</div>
+                                            {% endif %}
+                                            <div>{{ form_widget(formDetail.charge) }}</div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="" class="font-weight-bold">Tonne Dechargée</label>
+                                            {% if sub_error['total'] == null %}
+                                            <div>{{ form_errors(formDetail.charge) }}</div>
+                                            {% endif %}
+                                            <div>{{ form_widget(formDetail.decharge) }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row align-items-end">
+                                        <div class="form-group col-md-6 ">
+                                            <label for="">Date Départ</label>
+                                            <div>{{ form_widget(formDetail.dateDepart) }}</div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div>{{ form_widget(formDetail.position) }}</div>
+                                        </div>
+                                    </div>
+                                    {{ form_rest(formDetail) }}
+                                    <input type="hidden" name="detail_transport" value="deatil_transport">
                                     <button type="submit" name="valideDetail" value="detail" class="btn btn-primary btn-labeled pull-right">Valider&nbsp;<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
                                     {{ form_end(formDetail) }}
                                 </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade mt-2 mb-2 ml-2 mr-2" id="chauffeur" role="tabpanel"
+                             aria-labelledby="chauffeur-tab">
+                            <div class="heading"><h5>Infos Chauffeur</h5></div>
+                            <div class="small col-md-12">
+                                {{ form_start(chauffeurForm) }}
+                                <div class="form-row align-items-end col-md-12">
+                                    <div class="form-group col-md-6">
+                                        <label for="">Nom</label>
+                                        {{ form_widget(chauffeurForm.nom) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Prenom</label>
+                                        {{ form_widget(chauffeurForm.prenom) }}
+                                    </div>
+                                </div>
+                                <div class="form-row align-items-end col-md-12">
+                                    <div class="form-group col-md-6">
+                                        <label for="">Tel</label>
+                                        {{ form_widget(chauffeurForm.Tel) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Adresse</label>
+                                        {{ form_widget(chauffeurForm.Adresse) }}
+                                    </div>
+                                </div>
+                                <button type="submit" name="" value="transport" class="btn btn-primary btn-labeled pull-right">Valider&nbsp;<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
+                                {{ form_end(chauffeurForm) }}
                             </div>
                         </div>
                     </div>
@@ -419,7 +510,49 @@
     </div>
 {% endblock %}
 {% block javascripts %}
-    <script src="" type="text/javascript"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <script>
+        $(document).ready(function() {
+            $('#datePicker')
+                .datepicker({
+                    format: 'mm/dd/yyyy'
+                })
+                .on('changeDate', function(e) {
+                    // Revalidate the date field
+                    $('#eventForm').formValidation('revalidateField', 'date');
+                });
+
+            $('#eventForm').formValidation({
+                framework: 'bootstrap',
+                icon: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    name: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The name is required'
+                            }
+                        }
+                    },
+                    date: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The date is required'
+                            },
+                            date: {
+                                format: 'MM/DD/YYYY',
+                                message: 'The date is not a valid'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
     <script>
        function change() {
            var type = document.getElementById('type').value;
@@ -427,4 +560,5 @@
            prix.setAttribute('value' , type+' fcfa');
         }
     </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 {% endblock %}

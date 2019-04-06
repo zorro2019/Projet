@@ -21,9 +21,7 @@ class VoyageType extends AbstractType
             ->add('villedepart')
             ->add('villearrive')
             ->add('quantite')
-            ->add('debutAt',DateType::class)
             ->add('produits')
-            ->add('nouveauVoyage',CheckboxType::class)
         ;
     }
 

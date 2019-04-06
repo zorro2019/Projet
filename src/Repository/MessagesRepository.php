@@ -27,7 +27,7 @@ class MessagesRepository extends ServiceEntityRepository
     public function findLastMessage($value)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.idAbonnes != :val')
+            ->andWhere('m.idAbonne != :val')
             ->setParameter('val', $value)
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(4)

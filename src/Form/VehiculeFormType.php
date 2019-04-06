@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Vehicule;
+use App\Repository\TypeVehiculeRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,11 +17,8 @@ class VehiculeFormType extends AbstractType
             ->add('matricule')
             ->add('tonnage')
             ->add('ageVehicule')
-            ->add('typeVehicule',ChoiceType::class,[
-                'choices' =>$this->getChoice()
-            ])
-            ->add('nomChauffeur')
-            ->add('telChauffeur')
+            ->add('model')
+            ->add('description')
         ;
     }
 
@@ -30,12 +28,7 @@ class VehiculeFormType extends AbstractType
             'data_class' => Vehicule::class,
         ]);
     }
-    private function getChoice(){
-        $choices = Vehicule::TYPEVEHICULE;
-        $output = [];
-        foreach ($choices as $value => $item){
-            $output[$item] = $value;
-        }
-        return $output;
+    private function getChoice(TypeVehiculeRepository $repository){
+        return $choices = $repository->findAll();
     }
 }

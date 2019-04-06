@@ -2,15 +2,17 @@
 namespace App\Controller;
 
 use App\Entity\Abonnes;
+use App\Entity\Commentaires;
 use App\Entity\Messages;
 use App\Entity\ReadingMessages;
 use App\Entity\Rechercher;
-use App\Form\LoginAbonnesType;
+use App\Entity\Vehicule;
 use App\Form\RechercherType;
 use App\Repository\AbonnesRepository;
 use App\Repository\DetailsVoyageRepository;
 use App\Repository\MessagesRepository;
 use App\Repository\ReadingMessagesRepository;
+use App\Repository\TypeVehiculeRepository;
 use App\Repository\VoyageRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
@@ -53,7 +55,13 @@ class HomeController extends AbstractController
     /**
      * @var DetailsVoyageRepository
      */
+
+    /**
+     * @var DetailsVoyageRepository
+     */
     private $detailRep;
+
+    private $typeVehiculeRepository;
 
     /**
      * HomeController constructor.
@@ -67,7 +75,7 @@ class HomeController extends AbstractController
      */
     public function __construct(Environment $twig,MessagesRepository $messagesRepository, PaginatorInterface $paginator,
                                 ReadingMessagesRepository $unreadRep, ObjectManager $manager,AbonnesRepository $abonnesRepository,
-                DetailsVoyageRepository $detailRep)
+                DetailsVoyageRepository $detailRep, TypeVehiculeRepository $typeVehiculeRepository)
     {
         $this->twig = $twig;
         $this->messagesRepository = $messagesRepository;
@@ -76,6 +84,7 @@ class HomeController extends AbstractController
         $this->manager = $manager;
         $this->abonnesRepository = $abonnesRepository;
         $this->detailRep = $detailRep;
+        $this->typeVehiculeRepository = $typeVehiculeRepository;
     }
 
     /**
@@ -87,7 +96,7 @@ class HomeController extends AbstractController
      */
     public function index():Response
     {
-        return new Response($this->twig->render('pages/essai.html.twig'));
+        return new Response($this->twig->render('pages/index.html.twig'));
     }
 
     /**
@@ -111,6 +120,7 @@ class HomeController extends AbstractController
     public function fret(Request $request, VoyageRepository $repository)
     {
         $search = new  Rechercher();
+        $listeTypeVehicule = $this->typeVehiculeRepository->findAll();
         $voyage = $repository->findListVoyageActif();
         $form = $this->createForm(RechercherType::class , $search);
         $recherche = array();
@@ -122,7 +132,11 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $recherche['localite'] = $search->getLocalite();
             $recherche['quant'] = $search->getTonnage();
-            $recherche['type'] = $search->getTypeVehicule();
+            if (isset($_POST['type'])){
+                $recherche['type'] = $_POST['type'];
+                $search->setTypeVehicule($this->typeVehiculeRepository->find($_POST['type']));
+                dump($search->getTypeVehicule());
+            }
             if (empty($search->getLocalite()) && empty($search->getTypeVehicule()) && !empty($search->getTonnage())){
                 $recherche['submit'] = 2;
             }
@@ -149,7 +163,9 @@ class HomeController extends AbstractController
         return $this->render('pages/fret-en-direct.html.twig',[
             'form' => $form->createView(),
             'voyages' => $voyage,
-            'search' => $recherche
+            'search' => $recherche,
+            'typeVheicule' => $listeTypeVehicule,
+            'ValSearch' => $search
         ]);
     }
 
@@ -161,7 +177,7 @@ class HomeController extends AbstractController
     public function Alert(Request $request)
     {
         $user = $this->getUser();
-        $listPagine = $this->paginator($request);
+        $listPagine = $this->paginatorMessage($request);
         if (isset($_REQUEST['valider'])){
            $message = new Messages();
            $message->setTitle($_POST['titre']);
@@ -192,12 +208,12 @@ class HomeController extends AbstractController
      * @param Request $request
      * @return \Knp\Component\Pager\Pagination\PaginationInterface
      */
-    private function paginator(Request $request)
+    private function paginatorMessage(Request $request)
     {
         $pagination = $this->paginator->paginate(
             $this->messagesRepository->findLastMessageQuery(),
             $request->query->getInt('page',1),
-            4
+            3
         );
         return $pagination;
     }
@@ -222,9 +238,27 @@ class HomeController extends AbstractController
                 }
             }
         }
+        if (isset($_REQUEST['btn_valider'])){
+            if (!empty($_POST['comment'])){
+                if ($this->getUser() == null){
+                    return $this->redirectToRoute('create_compte');
+                }
+                else{
+                    $comment = new Commentaires();
+                    $comment->setCreatAt(new \DateTime('now'));
+                    $comment->setIdMessages($messages);
+                    $comment->setIdAbonne($this->getUser()->getId());
+                    $comment->setContents($_POST['comment']);
+                    $this->manager->persist($comment);
+                    $this->manager->flush();
+                }
+            }
+        }
         return $this->render('pages/read.html.twig',[
             'message' => $messages,
             'user' => $abonne
         ]);
     }
+
+
 }

@@ -48,9 +48,15 @@ class Messages
      */
     private $idAbonne;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaires", mappedBy="idMessages")
+     */
+    private $getComments;
+
     public function __construct()
     {
         $this->reading = new ArrayCollection();
+        $this->getComments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +153,37 @@ class Messages
     public function setIdAbonne(?Abonnes $idAbonne): self
     {
         $this->idAbonne = $idAbonne;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaires[]
+     */
+    public function getGetComments(): Collection
+    {
+        return $this->getComments;
+    }
+
+    public function addGetComment(Commentaires $getComment): self
+    {
+        if (!$this->getComments->contains($getComment)) {
+            $this->getComments[] = $getComment;
+            $getComment->setIdMessages($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGetComment(Commentaires $getComment): self
+    {
+        if ($this->getComments->contains($getComment)) {
+            $this->getComments->removeElement($getComment);
+            // set the owning side to null (unless already changed)
+            if ($getComment->getIdMessages() === $this) {
+                $getComment->setIdMessages(null);
+            }
+        }
 
         return $this;
     }

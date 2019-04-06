@@ -34,6 +34,7 @@ class VehiculeRepository extends ServiceEntityRepository
     }
 
 
+
     /*
     public function findOneBySomeField($value): ?Vehicule
     {

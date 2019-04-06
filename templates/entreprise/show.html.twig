@@ -101,78 +101,78 @@
                 <h2>Espace Entreprise</h2>
             </div>
             <div class="card mt-3 border-primary">
-                <div class="row col-md-12 mt-3">
-                    <div class="offset-md-1 col-md-7">
-                        <h2>{{ entreprise.nom }}</h2>
-                        <p><strong><i class="fa fa-address-book-o"></i>&nbsp;Adresse : </strong> {{ entreprise.adresse }} </p>
-                        <p><strong><i class="fa fa-toolbox"></i>&nbsp;Ville : </strong>{{ entreprise.ville }}</p>
-                        <p><strong><i class="fa fa-phone"></i>&nbsp;Tél : </strong> 00221 {{ entreprise.tel }}</p>
-                        <p><strong><i class="fa fa-vcard"></i>&nbsp;Assurance : </strong>{{ entreprise.compagnieAssurance }}</p>
-                        <p><strong><i class="fa fa-clock-o"></i>&nbsp;Date inscription : </strong>{{ entreprise.createAt.format('d/m/y') }}</p>
-                        <p><strong>Zones Intervations : </strong>
-                            {% for zone in entreprise.listeZone %}
-                                <span class="tags">{{ zone.nomZone }}</span>
-                            {% endfor %}
-                        </p>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <figure>
-                            <img src="{{ vich_uploader_asset(entreprise,'imageLogo') }}" width="200px" height="200px;" alt="" class="rounded-circle img-circle img-responsive">
-                            <figcaption class="ratings">
-                                <p>Notes
-                                    <a href="#">
-                                        <span class="fa fa-star"></span>
-                                    </a>
-                                    <a href="#">
-                                        <span class="fa fa-star"></span>
-                                    </a>
-                                    <a href="#">
-                                        <span class="fa fa-star"></span>
-                                    </a>
-                                    <a href="#">
-                                        <span class="fa fa-star"></span>
-                                    </a>
-                                    <a href="#">
-                                        <span class="fa fa-star-o"></span>
-                                    </a>
-                                </p>
-                            </figcaption>
-                        </figure>
-                    </div>
+            <div class="row col-md-12 mt-3">
+                <div class="offset-md-1 col-md-7">
+                    <h2>{{ entreprise.nom }}</h2>
+                    <p><strong><i class="fa fa-address-book-o"></i>&nbsp;Adresse : </strong> {{ entreprise.adresse }} </p>
+                    <p><strong><i class="fa fa-toolbox"></i>&nbsp;Ville : </strong>{{ entreprise.ville }}</p>
+                    <p><strong><i class="fa fa-phone"></i>&nbsp;Tél : </strong> 00221 {{ entreprise.tel }}</p>
+                    <p><strong><i class="fa fa-vcard"></i>&nbsp;Assurance : </strong>{{ entreprise.compagnieAssurance }}</p>
+                    <p><strong><i class="fa fa-clock-o"></i>&nbsp;Date inscription : </strong>{{ entreprise.createAt.format('d/m/y') }}</p>
+                    <p><strong>Zones Intervations : </strong>
+                        {% for zone in entreprise.listeZone %}
+                            <span class="tags">{{ zone.nomZone }}</span>
+                        {% endfor %}
+                    </p>
                 </div>
-                <hr>
-                <div class="row col-md-12 mb-3">
-                    <div class="col-xs-12 col-md-4 emphasis text-center">
-                        <h2><strong> {{ entreprise.nbreAbonne }} </strong></h2>
-                        <p><small>Abonnés</small></p>
-                        <button class="btn btn-success btn-block"><span class="fa fa-users"></span> Utilisateurs </button>
-                    </div>
-                    <div class="col-xs-12 col-md-4 emphasis text-center">
-                        <h2><strong>{{ total }}</strong></h2>
-                        <p><small>véhicules</small></p>
-                        <button class="btn btn-info btn-block"><span class="fa fa-truck"></span> Nombre de camion </button>
-                    </div>
-                    <div class="col-xs-12 col-md-4 emphasis text-center">
-                        <h2><strong>5</strong></h2>
-                        <p><small>options</small></p>
-                        <div class="btn-group dropup btn-block">
-                            <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu text-left" role="menu">
-                                <li><a href="#"><span class="fa fa-envelope pull-right"></span>  Contacter par email </a></li>
-                                <li><a href="#"><span class="fa fa-list pull-right"></span> Add or remove from a list  </a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"><span class="fa fa-warning pull-right"></span>Report this user for spam</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#" class="btn disabled" role="button"> Unfollow </a></li>
-                            </ul>
-                        </div>
+                <div class="col-md-4 text-center">
+                    <figure>
+                        <img src="{{ vich_uploader_asset(entreprise,'imageLogo') }}" width="200px" height="200px;" alt="" class="rounded-circle img-circle img-responsive">
+                        <figcaption class="ratings">
+                            <p>Notes
+                                <a href="#">
+                                    <span class="fa fa-star"></span>
+                                </a>
+                                <a href="#">
+                                    <span class="fa fa-star"></span>
+                                </a>
+                                <a href="#">
+                                    <span class="fa fa-star"></span>
+                                </a>
+                                <a href="#">
+                                    <span class="fa fa-star"></span>
+                                </a>
+                                <a href="#">
+                                    <span class="fa fa-star-o"></span>
+                                </a>
+                            </p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <hr>
+            <div class="row col-md-12 mb-3">
+                <div class="col-xs-12 col-md-4 emphasis text-center">
+                    <h2><strong> {{ entreprise.nbreAbonne }} </strong></h2>
+                    <p><small>Abonnés</small></p>
+                    <button class="btn btn-success btn-block"><span class="fa fa-users"></span> Utilisateurs </button>
+                </div>
+                <div class="col-xs-12 col-md-4 emphasis text-center">
+                    <h2><strong>{{ total }}</strong></h2>
+                    <p><small>véhicules</small></p>
+                    <button class="btn btn-info btn-block"><span class="fa fa-truck"></span> Nombre de camion </button>
+                </div>
+                <div class="col-xs-12 col-md-4 emphasis text-center">
+                    <h2><strong>5</strong></h2>
+                    <p><small>options</small></p>
+                    <div class="btn-group dropup btn-block">
+                        <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu text-left" role="menu">
+                            <li><a href="#"><span class="fa fa-envelope pull-right"></span>  Contacter par email </a></li>
+                            <li><a href="#"><span class="fa fa-list pull-right"></span> Add or remove from a list  </a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><span class="fa fa-warning pull-right"></span>Report this user for spam</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="btn disabled" role="button"> Unfollow </a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     {% for u in entreprise.abonnes %}
         {% if u.id == user.id %}

@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Rechercher;
 use App\Entity\Voyage;
+use App\Form\RechercherType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -41,10 +43,21 @@ class VoyageRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('v')
             ->andWhere('v.status = 1')
             ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function findListVoyageActifQuery(Rechercher $search, $type)
+    {
+        $query =  $this->createQueryBuilder('v')
+            ->andWhere('v.status = 1')
+            ->orderBy('v.debut_at', 'ASC')
+            ;
+        if ($search->getTonnage()){
+            $query->where('v.quantite > :tonnage');
+        }
+        return $query->getQuery();
     }
 
 

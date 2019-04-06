@@ -80,6 +80,13 @@ class Voyage
      * @ORM\Column(type="integer", nullable=true)
      */
     private $quantiteTotal;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Chauffeur",inversedBy="voyage",fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idChauffeur;
+
     public function __construct()
     {
         $this->ListeDetailVoyage = new ArrayCollection();
@@ -251,5 +258,24 @@ class Voyage
         }
         return $total;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdChauffeur()
+    {
+        return $this->idChauffeur;
+    }
+
+    /**
+     * @param mixed $idChauffeur
+     * @return Voyage
+     */
+    public function setIdChauffeur($idChauffeur)
+    {
+        $this->idChauffeur = $idChauffeur;
+        return $this;
+    }
+
 
 }

@@ -2,8 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta >
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="/build/img/favicon.png" >
+        <link href="/build/img/favicon.png" rel="icon">
+        <link href="/build/img/favicon.png" rel="apple-touch-icon">
         {{ encore_entry_link_tags('app') }}
         <link rel="stylesheet" href="/build/app.css">
         {% block stylesheets %}{% endblock %}

@@ -99,16 +99,24 @@
             </div>
         </div>
         <div class="container mt-5">
+            <div class="offset-md-1 col-md-10 bg-gray-dark">
+                {% for message in app.flashes('success') %}
+                    <p class="text-center alert alert-success">{{ message }}</p>
+                {% endfor %}
+            </div>
             <div class="row">
-                <div class="card col-md-3">
+                <div class="card col-md-3 border-primary">
                     <div class="card-body">
                         <div class="media">
                             {% if user.file != null %}
                                 <img class="card-img profile-image" width="300px" height="200px;" src="{{ vich_uploader_asset(user, 'imageProfil') }}" alt="">
                             {% endif %}
+                            {% if user.file == null %}
+                                <img class="card-img profile-image" width="300px" height="200px;" src="/build/img/default_user.png" alt="">
+                            {% endif %}
                         </div>
                         <div class="card-text">
-                            <hr>
+                            <hr class="bg-primary">
                             <p>
                                 <strong>
                                     <span class="small font-weight-bold text-uppercase">{{ user.nom }}</span>
@@ -123,9 +131,9 @@
                                     {% endif %}
                                 </strong>
                             </p>
-                            <hr>
+                            <hr class="bg-primary">
                             <h3><strong>Mes liens</strong></h3>
-                            <hr>
+                            <hr class="bg-primary">
                             <ul class="nav-list">
                                 {% if user.typeAbonne == 2 %}
                                     <li>
@@ -133,38 +141,46 @@
                                             <a href="{{ path('create.vehicule') }}"><i class="fa fa-truck"></i>&nbsp;Gestion Camions</a>
                                         </h5>
                                     </li>
-                                    <hr>
+                                    <hr class="bg-primary">
                                 {% endif %}
                                 <li>
                                     <h5>
-                                        <a href="{{ path('alert.fret') }}"><i class="fa fa-phone-square"></i>&nbsp;Alert Fret</a>
+                                        <a href="{{ path('alert.fret') }}"><i class="fa fa-bell"></i>&nbsp;Publication</a>
                                     </h5>
                                 </li>
-                                <hr>
+                                <hr class="bg-primary">
                                 <li>
                                     <h5>
-                                        <a href="{{ path('fret.direct') }}"><i class="fa fa-pause-circle-o"></i>&nbsp;Fret en direct</a>
+                                        <a href="{{ path('fret.direct') }}"><i class="fa fa-search"></i>&nbsp;Fret en direct</a>
                                     </h5>
                                 </li>
-                                <hr>
+                                <hr class="bg-primary">
                                 <li>
                                     <h5>
-                                        <a href="{{ path('alert.fret') }}"><i class="fa fa-comment-o"></i>&nbsp;Notification</a>
+                                        <a href="{{ path('alerte') }}"><i class="fa fa-comment-o"></i>&nbsp;<span class="badge badge-danger">{{ total }}</span>&nbsp;Alerte frêt</a>
                                     </h5>
                                 </li>
-                                <hr>
+                                <hr class="bg-primary">
                                 <li>
                                     <h5>
-                                        <a href="{{ path('abonnement') }}" ><i class="fa fa-desktop"></i>&nbsp;S'abonner</a>
+                                        <a href="{{ path('abonnement') }}" ><i class="fa fa-credit-card"></i>&nbsp;S'abonner</a>
                                     </h5>
                                 </li>
-                                <hr>
+
+                                {% if user.idEntreprise == null %}<hr class="bg-primary">
+                                    <li>
+                                        <h5>
+                                            <a href="{{ path('abonne.create.entreprise') }}" ><i class="fa fa-briefcase"></i>&nbsp;Ajouter entreprise</a>
+                                        </h5>
+                                    </li>
+                                {% endif %}
+                                <hr class="bg-primary">
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="card">
+                    <div class="card border-primary">
                         <div class="card-body">
                      <span>
                         <h3 class="card-title pull-left text-primary"><small>{{ user.email }}</small> <i
@@ -172,7 +188,7 @@
                                     data-placement="bottom" title="Vous êtes connecté"></i></h3>
                     </span>
                             <br><br>
-                            <hr>
+                            <hr class="bg-primary">
                             <span class="pull-left">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -182,14 +198,16 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="post-tab" data-toggle="tab" href="#post" role="tab"
-                                       aria-controls="profile" aria-selected="false"><i class="fa fa-envelope-o"></i>&nbsp;<span class="badge badge-danger">{{ user.nbreMessageInread }}</span> Alerte
+                                       aria-controls="profile" aria-selected="false"><i class="fa fa-envelope-o"></i>&nbsp;<span class="badge badge-danger">{{ user.nbreMessageInread }}</span> Publications
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {% if user.typeAbonne == 2 %}
+                                    <li class="nav-item">
                                     <a class="nav-link" id="trajet-tab" data-toggle="tab" href="#trajet" role="tab"
                                        aria-controls="trajet" aria-selected="false"><i
                                                 class="fa fa-truck"></i> Trajet endirect</a>
                                 </li>
+                                {% endif %}
                             </ul>
                         </span>
                             <span class="pull-right text-primary">
@@ -201,11 +219,11 @@
                     </span>
                         </div>
                     </div>
-                    <div class="card tab-content profile-tab mt-5" id="myTabContent">
+                    <div class="card border-primary tab-content profile-tab mt-5" id="myTabContent">
                         <div class="tab-pane fade show active mt-2 mb-2 ml-2 mr-2" id="info" role="tabpanel"
                              aria-labelledby="info-tab">
                             <div class="card float-left mt-1 mb-1 col-md-6 border-left-0 border-bottom-0 border-top-0 border-primary">
-                                <div class="card-body">
+                                <div class="card-body" style="width: 100%;">
                                     <h3 class="font-weight-bold">Mes infos</h3>
                                     <div class="row" style="width: 100%;">
                                         <p class="small"><i class="fa fa-pencil-square"></i>&nbsp;Nom&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ user.nom }}</p>
@@ -279,12 +297,12 @@
                                 </h4>
                                 <span>
                     </span>
-                                <hr>
+                                <hr class="bg-primary">
                                 <div class="post-content"><br>
                                     <h5>Titre <i class="fa fa-angle-right"></i> {{ message.idMessage.title }}</h5>
                                     <p>{{ message.idMessage.contenu }} ... <a class="text-decoration-none" href="{{ path('read.alert',{id:message.idMessage.id}) }}">Lire la suite</a></p>
                                 </div>
-                                <hr>
+                                <hr class="bg-primary">
                                 <div>
                                     <div class="pull-right btn-group-xs">
                                         <a class="btn btn-default btn-xs"><i class="fa fa-comment"
@@ -297,7 +315,7 @@
                                     </div>
                                     <br>
                                 </div>
-                                <hr>
+                                <hr class="bg-primary">
                                 <div class="media">
                                     <div class="pull-left">
                                         <a href="#">
@@ -340,14 +358,8 @@
                                                         </td>
                                                         <td style="background-color:rgba(156,255,80,0.22);">{{ dt.idVoyage.idVehicule.matricule }}</td>
                                                         <td style="background-color: rgba(80,255,65,0.14);">
-                                                            {% if dt.idVoyage.idVehicule.typeVehicule == 1 %}
-                                                                Camion
-                                                            {% endif %}
-                                                            {% if dt.idVoyage.idVehicule.typeVehicule == 2 %}
-                                                                Citerne
-                                                            {% endif %}
-                                                            {% if dt.idVoyage.idVehicule.typeVehicule == 3 %}
-                                                                Camion firgorifique
+                                                            {% if dt.idVoyage.idVehicule.typeVehicule != null %}
+                                                                {{ dt.idVoyage.idVehicule.typeVehicule.libelle }}
                                                             {% endif %}
                                                         </td>
                                                         <td style="background-color: rgba(156,255,80,0.14);">{{ dt.ville }}</td>
@@ -360,9 +372,9 @@
                                                                 Cet vehicule a commencé son voyage le {{ dt.idVoyage.debutAt.format('d/m/y') }} en partant de {{ dt.idVoyage.villedepart }} à destination de {{ dt.idVoyage.villearrive }}. Il transporte du {{ dt.idVoyage.produits }}
                                                                 Il se trouve actuellement à {{ dt.ville }} avec une charge de {{ dt.idVoyage.quantiteDetail }} tonnes.
                                                             </p>
-                                                            <span class="text-bold text-dark pull-left">Information sur le chauffeur : <br>Nom : {{ dt.idVoyage.idVehicule.nomChauffeur }}
+                                                            <span class="text-bold text-dark pull-left">Information sur le chauffeur : <br>Nom : {{ dt.idVoyage.idChauffeur.nom }}
                                                                 <br>
-                                                            Tel : {{ dt.idVoyage.idVehicule.telChauffeur }}
+                                                            Tel : {{ dt.idVoyage.idChauffeur.Tel }}
                                                             </span>
                                                             <span class="text-bold text-dark pull-right">Information sur le transporteur : <br>Nom : {{ dt.idVoyage.idVehicule.idAbonne.nom }}
                                                                 <br>

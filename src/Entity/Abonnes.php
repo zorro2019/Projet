@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Repository\VehiculeRepository;
+use App\Repository\VoyageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,7 +38,6 @@ class Abonnes implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @Asset\Regex("/^[' a-zA-Z]+$/")
      * @var string
      * @ORM\Column(name="nom", type="string", length=70, nullable=false)
      */
@@ -45,7 +46,6 @@ class Abonnes implements UserInterface, \Serializable
     /**
      * @Asset\Regex("/^[0-9]{9}$/")
      * @var string
-     * @Asset\Length(min=5,max=10)
      * @ORM\Column(name="telephone", type="string", length=25, nullable=true)
      */
     private $telephone;
@@ -126,6 +126,16 @@ class Abonnes implements UserInterface, \Serializable
     private $NbreMessageInread;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Chauffeur", mappedBy="idAbonnes")
+     */
+    private $Chauffeurs;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $admin;
+
+    /**
      * @return mixed
      */
     public function getNbreMessageInread()
@@ -145,6 +155,7 @@ class Abonnes implements UserInterface, \Serializable
     {
         $this->listeVehicule = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->Chauffeurs = new ArrayCollection();
     }
 
 
@@ -437,5 +448,65 @@ class Abonnes implements UserInterface, \Serializable
         return $this;
     }
 
+    /**
+     * @param VoyageRepository $repository
+     * @param $type
+     * @return Collection|Vehicule[]
+     */
+    public function getVehiculeVide(VoyageRepository $repository, $type): Collection
+    {
+        $listeVehiculeVide = $this->getListeVehicule();
+        foreach ($listeVehiculeVide as $vh ){
+            if ($repository->findVoyageActif($vh) != null){
+                $listeVehiculeVide->removeElement($vh);
+            }
+            if ($vh->getTypeVehicule() != $type){
+                $listeVehiculeVide->removeElement($vh);
+            }
+        }
+        return $listeVehiculeVide;
+    }
 
+    /**
+     * @return Collection|Chauffeur[]
+     */
+    public function getChauffeurs(): Collection
+    {
+        return $this->Chauffeurs;
+    }
+
+    public function addChauffeur(Chauffeur $chauffeur): self
+    {
+        if (!$this->Chauffeurs->contains($chauffeur)) {
+            $this->Chauffeurs[] = $chauffeur;
+            $chauffeur->setIdAbonnes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChauffeur(Chauffeur $chauffeur): self
+    {
+        if ($this->Chauffeurs->contains($chauffeur)) {
+            $this->Chauffeurs->removeElement($chauffeur);
+            // set the owning side to null (unless already changed)
+            if ($chauffeur->getIdAbonnes() === $this) {
+                $chauffeur->setIdAbonnes(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAdmin(): ?bool
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(bool $admin): self
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
 }

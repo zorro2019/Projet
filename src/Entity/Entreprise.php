@@ -89,6 +89,24 @@ class Entreprise
      */
     private $compagnieAssurance;
 
+    private $nbreVehiculeVide;
+
+    /**
+     * @return mixed
+     */
+    public function getNbreVehiculeVide()
+    {
+        return $this->nbreVehiculeVide;
+    }
+
+    /**
+     * @param mixed $nbreVehiculeVide
+     */
+    public function setNbreVehiculeVide($nbreVehiculeVide): void
+    {
+        $this->nbreVehiculeVide = $nbreVehiculeVide;
+    }
+
     public function __construct()
     {
         $this->abonnes = new ArrayCollection();

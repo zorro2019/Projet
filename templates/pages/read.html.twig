@@ -100,45 +100,47 @@
         </div>
         <div class="container" style="margin-top: 40px; margin-bottom: 80px;">
             <div class="heading"><h4>Nouvelle alerte</h4></div>
-            <div class="jumbotron">
-                <div class="col-md-12">
-                    <div class="pull-left ">
-                        <a href="#">
+            <div class="card col-md-12">
+                <div class="pull-left mt-3">
+                    <a href="#">
+                        {% if message.idAbonne.file != null %}
                             <img class="media-object img-circle"
                                  src="{{ vich_uploader_asset(message.idAbonne, 'imageProfil') }}" width="50px"
                                  height="50px" style="margin-right:8px; margin-top:-5px;">
-                        </a>
-                    </div>
-                    <h4><a href="#" style="text-decoration:none;"><strong>{{ message.idAbonne.nom }}</strong></a> –
-                        <small>
-                            <small><a href="#" style="text-decoration:none; color:grey;"><i><i
-                                                class="fa fa-clock-o"
-                                                aria-hidden="true"></i>{{ message.createAt.format('d/m/y h:m:s') }}
-                                    </i></a>
-                            </small>
+                        {% endif %}
+                    </a>
+                </div>
+                <h4><a href="#" style="text-decoration:none;"><strong>{{ message.idAbonne.nom }}</strong></a> –
+                    <small>
+                        <small><a href="#" style="text-decoration:none; color:grey;"><i><i
+                                            class="fa fa-clock-o"
+                                            aria-hidden="true"></i>{{ message.createAt.format('d/m/y h:m:s') }}
+                                </i></a>
                         </small>
-                    </h4>
-                    <span>
+                    </small>
+                </h4>
+                <span>
                     </span>
-                    <hr>
-                    <div class="post-content">
-                        <p>{{ message.title }}</p>
-                        <p class="small">{{ message.contenu|nl2br }}</p>
+                <hr>
+                <div class="post-content">
+                    <p class="font-weight-bold">{{ message.title }}</p>
+                    <p class="">{{ message.contenu|nl2br }}</p>
+                </div>
+                <hr>
+                <div>
+                    <div class="pull-right btn-group-xs">
+                        <a class="btn btn-default btn-xs"><i class="fa fa-comment"
+                                                             aria-hidden="true"></i> Comment</a>
                     </div>
-                    <hr>
-                    <div>
-                        <div class="pull-right btn-group-xs">
-                            <a class="btn btn-default btn-xs"><i class="fa fa-comment"
-                                                                 aria-hidden="true"></i> Comment</a>
-                        </div>
-                        <div class="pull-left">
-                            <p class="text-muted" style="margin-left:5px;"><i class="fa fa-globe"
-                                                                              aria-hidden="true"></i> Public
-                            </p>
-                        </div>
-                        <br>
+                    <div class="pull-left">
+                        <p class="text-muted" style="margin-left:5px;"><i class="fa fa-globe"
+                                                                          aria-hidden="true"></i> Public
+                        </p>
                     </div>
-                    <hr>
+                    <br>
+                </div>
+                <hr>
+                <form action="{{ path('read.alert',{id:message.id})}}" method="post">
                     <div class="media">
                         {% if app.user %}
                             <div class="pull-left">
@@ -150,13 +152,13 @@
                             </div>
                         {% endif %}
                         <div class="media-body">
-                            <textarea class="form-control" rows="1" size="50" placeholder="Comment"></textarea>
+                            <textarea name="comment" class="form-control" rows="1" size="50" placeholder="Comment" required></textarea>
                         </div>
                         <div class="pull-right ml-4">
-                            <button class="btn btn-primary" type="submit">send</button>
+                            <button name="btn_valider" value="valider" class="btn btn-primary mb-3" type="submit">send</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

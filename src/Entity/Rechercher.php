@@ -2,8 +2,17 @@
 namespace App\Entity;
 
 class Rechercher{
+    /**
+     * @var string|null
+     */
     private $localite;
+    /**
+     * @var int|null
+     */
     private $tonnage;
+    /**
+     * @var TypeVehicule|null
+     */
     private $typeVehicule;
     public function __construct()
     {

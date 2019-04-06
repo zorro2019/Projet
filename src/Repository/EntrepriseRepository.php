@@ -37,15 +37,19 @@ class EntrepriseRepository extends ServiceEntityRepository
     }
 
 
-    /*
-    public function findOneBySomeField($value): ?Entreprise
+
+    public function findAllEnreprise(): ?Entreprise
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
+        $var = $this->createQueryBuilder('e');
+            $var1 = $var->select('e')
+                ->join('e.abonnes','ab')
+                ->join('ab.listeVehicule','vh')
+                ->join('vh.voyage', 'vg')
+                ->addSelect('vg')
+                ->groupBy('e.nom')
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
-    */
+
 }

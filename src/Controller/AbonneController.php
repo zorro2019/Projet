@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Abonnes;
 use App\Entity\Entreprise;
+use App\Entity\SmsSender;
 use App\Form\FormAbonneType;
 use App\Form\FormEntrepriseType;
 use App\Repository\AbonnesRepository;
+use App\Repository\AlerteRepository;
 use App\Repository\EntrepriseRepository;
 use App\Repository\MessagesRepository;
 use App\Repository\ReadingMessagesRepository;
@@ -45,10 +47,12 @@ class AbonneController extends AbstractController
 
     private $readRepository;
 
+    private $alerteRepository;
+
     public function __construct(ObjectManager $manager, UserPasswordEncoderInterface $encoder,
                                 AbonnesRepository $repository, EntrepriseRepository $entrepriseRepo,
                                 MessagesRepository $messageRepo, GetAuthentificateUser $logged,
-            ReadingMessagesRepository $readRepository
+                                ReadingMessagesRepository $readRepository, AlerteRepository $alerteRepository
     )
     {
         $this->manager = $manager;
@@ -58,6 +62,7 @@ class AbonneController extends AbstractController
         $this->messageRepo = $messageRepo;
         $this->logged = $logged;
         $this->readRepository = $readRepository;
+        $this->alerteRepository = $alerteRepository;
     }
 
     /**
@@ -71,26 +76,22 @@ class AbonneController extends AbstractController
         if ($this->logged->getLoggedUser() == null)
             return $this->redirectToRoute('login');
         $abonnes = $this->logged->getLoggedUser();
+        $lastAlert = null;
+        $total = 0;
+        if ($abonnes->getIdEntreprise() != null){
+            $total = count($lastAlert = $this->alerteRepository->findLastByEntreprise($abonnes->getIdEntreprise()->getId()));
+        }
+        if ($abonnes->getAdmin() == true){
+            return $this->redirectToRoute('admin.index');
+        }
         $ab = new Abonnes();
         $abonnes->setNbreMessageInread(count($this->readRepository->findMessagesInread($abonnes->getId())));
         $lastMessage = $this->readRepository->findMessagesInread($abonnes->getId());
-        /*$message = (new \Swift_Message("création de compte"))
-            ->setFrom('yaranagoreoumar@gmail.com')
-            ->setTo($abonnes->getEmail())
-            ->setBody($this->renderView(
-            // templates/emails/registration.html.twig
-                'pages/register.html.twig',
-                ['name' => $abonnes->getNom(),
-                    'login' => $abonnes->getEmail() ]
-            ),
-                'text/html')
-        ;
-        $mailer->send($message);*/
-        //$this->sendSMS();
         return $this->render('abonne/index.html.twig', [
             'user' => $abonnes,
             'messages' => $lastMessage,
-            'abonnes' => $ab
+            'abonnes' => $ab,
+            'total' => $total
         ]);
     }
 
@@ -100,7 +101,7 @@ class AbonneController extends AbstractController
      * @param \Swift_Mailer $mailer
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(Request $request,\Swift_Mailer $mailer)
+    public function create(Request $request, \Swift_Mailer $mailer)
     {
         $ab = new Abonnes();
         $form = $this->createForm(FormAbonneType::class, $ab);
@@ -109,31 +110,37 @@ class AbonneController extends AbstractController
         $sub_error['tel'] = "";
         $sub_error['password'] = "";
         if ($form->isSubmitted()) {
-            if ($ab->getPassword() != $ab->getPwd()){
+            if ($ab->getPassword() != $ab->getPwd()) {
                 $sub_error['password'] = "erreur mot de passe";
             }
-            if ($this->validateTel($ab->getTelephone() ) == false){
+            if ($this->validateTel($ab->getTelephone()) == false) {
                 $sub_error['tel'] = "Numero incorrect";
             }
-            if ($sub_error['password'] == "" &&  $sub_error['tel'] == "") {
+            if ($sub_error['password'] == "" && $sub_error['tel'] == "") {
                 if ($form->isValid()) {
-                    $message = (new \Swift_Message('Hello Email'))
-                        ->setFrom('yaranagoresekou@gmail.com')
+                    $message = (new \Swift_Message("création de compte"))
+                        ->setFrom('yaranagoreoumar@gmail.com')
                         ->setTo($ab->getEmail())
-                        ->setBody("hello world")
-                    ;
-                    $mailer->send($message);
+                        ->setBody($this->renderView(
+                            'pages/register.html.twig',
+                            ['name' => $ab->getNom(),
+                                'login' => $ab->getEmail()]
+                        ),
+                            'text/html');
+                    //$mailer->send($message);
+                    //SmsSender::Send("Cher(e) " . $ab->getNom() . " Bienvenu(e) sur frêt Online , nous sommes heureux de vous accueillir parmi nos membres voici vos identifiants Login : " . $ab->getEmail() . " Password : " . $ab->getPassword() . " ", $ab->getTelephone());
                     $ab->setPassword($this->encoder->encodePassword($ab, $ab->getPassword()));
                     $ab->setCreatedAt(new \DateTime('now'));
+                    $ab->setAdmin(false);
                     $this->manager->persist($ab);
                     $this->manager->flush();
                     $this->addFlash('success', 'votre compte a été créé avec succes');
                     $token = new UsernamePasswordToken($ab, null, 'main', ['ROLE_USER']);
                     $this->get('security.token_storage')->setToken($token);
-                   if ($ab->getTypeAbonne() == 2)
-                       return $this->redirectToRoute("abonne.create.entreprise");
-                   else
-                       return $this->redirectToRoute('user_espace');
+                    if ($ab->getTypeAbonne() == 2)
+                        return $this->redirectToRoute("abonne.create.entreprise");
+                    else
+                        return $this->redirectToRoute('user_espace');
                 }
             }
         }
@@ -161,9 +168,6 @@ class AbonneController extends AbstractController
         $sub_error['email'] = "";
         $sub_error['password'] = "";
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($this->validateTel($abonnes->getTelephone(),1) == false) {
-                $sub_error['tel'] = "Veuillez choisir un bon numero";
-            }
             if (empty($sub_error['tel']) && empty($sub_error['image'])) {
                 $abonnes->setPassword($this->encoder->encodePassword($abonnes, $abonnes->getPassword()));
                 $this->manager->persist($abonnes);
@@ -198,7 +202,7 @@ class AbonneController extends AbstractController
         $errors['email'] = "";
         if ($form->isSubmitted()) {
             $last = $this->entrepriseRepo->findOneBy([
-                'ninea'=> $ent->getNinea()
+                'ninea' => $ent->getNinea()
             ]);
             if ($this->validateTel($ent->getTel()) == false) {
                 $errors['tel'] = "Ce format est incorrect";
@@ -207,18 +211,16 @@ class AbonneController extends AbstractController
                 $errors['ninea'] = "Cette entreprise a plus de 10 utilisateurs";
             }
 
-            if (empty($errors['tel']))
-            {
-                if ($form->isValid()){
+            if (empty($errors['tel'])) {
+                if ($form->isValid()) {
                     /** @var TYPE_NAME $ninea */
-                    if ($last == null){
+                    if ($last == null) {
                         $this->manager->persist($ent);
                         $ent->setCreateAt(new \DateTime('now'));
                         $user = $this->getUser();
                         $user->setIdEntreprise($ent);
                         $this->manager->persist($user);
-                        foreach ($_POST['zone'] as $value)
-                        {
+                        foreach ($_POST['zone'] as $value) {
                             $ent->addListeZone($repository->find(($value)));
                         }
                         $ent->setNbreAbonne(1);
@@ -226,10 +228,10 @@ class AbonneController extends AbstractController
                         $this->manager->flush();
                         return $this->redirectToRoute("user_espace");
                     }
-                    if ($last != null && $last->getNbreAbonne() < 10){
+                    if ($last != null && $last->getNbreAbonne() < 10) {
                         $user = $this->getUser();
                         $user->setIdEntreprise($last);
-                        $last->setNbreAbonne($last->getNbreAbonne()+1);
+                        $last->setNbreAbonne($last->getNbreAbonne() + 1);
                         $this->manager->persist($last);
                         $this->manager->persist($user);
                         $this->manager->flush();
@@ -241,7 +243,7 @@ class AbonneController extends AbstractController
         return $this->render('abonne/create_entreprise.html.twig', [
             'form' => $form->createView(),
             'zones' => $repository->findAll(),
-            'sub_error' =>$errors
+            'sub_error' => $errors
         ]);
     }
 
@@ -251,13 +253,13 @@ class AbonneController extends AbstractController
      */
     private function validateTel($tel)
     {
-        if ($tel[0] == '7'){
-            if ($tel[1] = '7' || $tel[1] == '8' ||$tel[1] == '0' || $tel[1] == '6'){
+        if ($tel[0] == '7') {
+            if ($tel[1] == '7' || $tel[1] == '8' || $tel[1] == '0' || $tel[1] == '6') {
                 return true;
             }
-        }
-        else
+        } else
             return false;
+        return false;
     }
 
     /**
@@ -267,14 +269,14 @@ class AbonneController extends AbstractController
      */
     public function show(Abonnes $abonnes)
     {
-        if ($this->logged->getLoggedUser() == null){
+        if ($this->logged->getLoggedUser() == null) {
             return $this->redirectToRoute('login');
         }
         $user = $this->getUser();
-        if ($abonnes->getId() == $user->getid()){
+        if ($abonnes->getId() == $user->getid()) {
             return $this->redirectToRoute('user_espace');
         }
-        return $this->render('abonne/show.html.twig',[
+        return $this->render('abonne/show.html.twig', [
             'user' => $abonnes,
         ]);
     }
@@ -291,7 +293,7 @@ class AbonneController extends AbstractController
 // retrieve an access token
         $response = $osms->getTokenFromConsumerKey();
         //$conf = array(
-            //'token' => $response['access_token']
+        //'token' => $response['access_token']
         //);
 
         if (!empty($response['access_token'])) {
