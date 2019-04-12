@@ -87,6 +87,7 @@ class AbonneController extends AbstractController
         $ab = new Abonnes();
         $abonnes->setNbreMessageInread(count($this->readRepository->findMessagesInread($abonnes->getId())));
         $lastMessage = $this->readRepository->findMessagesInread($abonnes->getId());
+       
         return $this->render('abonne/index.html.twig', [
             'user' => $abonnes,
             'messages' => $lastMessage,
@@ -128,6 +129,7 @@ class AbonneController extends AbstractController
                         ),
                             'text/html');
                     //$mailer->send($message);
+
                     //SmsSender::Send("Cher(e) " . $ab->getNom() . " Bienvenu(e) sur frêt Online , nous sommes heureux de vous accueillir parmi nos membres voici vos identifiants Login : " . $ab->getEmail() . " Password : " . $ab->getPassword() . " ", $ab->getTelephone());
                     $ab->setPassword($this->encoder->encodePassword($ab, $ab->getPassword()));
                     $ab->setCreatedAt(new \DateTime('now'));

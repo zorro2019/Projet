@@ -2,60 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="652a6cdc-4654-46ad-bca5-6e3f6204f495" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/images/apple-touch-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/ALertSearch.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/SmsSender.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/abonnement.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/abonnes.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/account.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/exemple.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/vehicule.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/alerte/alerte.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/alerte/sendAlert.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/alerte/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/style.default.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/style.default.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AbonneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AbonneController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/VehiculeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VehiculeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Abonnes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Abonnes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Entreprise.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Entreprise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Messages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Rechercher.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Rechercher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Vehicule.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Vehicule.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Voyage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Voyage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RechercherType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RechercherType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/VehiculeFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VehiculeFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/VoyageType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VoyageType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190308221027.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190310222230.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190311140252.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190311185145.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190313141251.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190313141657.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190319034453.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EntrepriseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/EntrepriseRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MessagesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MessagesRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/VehiculeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VehiculeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/VoyageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VoyageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/abonne/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/abonne/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/abonne/essai.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/abonne/essai.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/abonne/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/abonne/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/abonne/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/abonne/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entreprise/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entreprise/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/alert-fret.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/alert-fret.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/essai.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/essai.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/fret-en-direct.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/fret-en-direct.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/read.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/read.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vehicule/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vehicule/create.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -72,11 +20,8 @@
       <file leaf-file-name="AbonneController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/AbonneController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
+            <state relative-caret-position="1536">
               <caret line="81" column="72" selection-start-line="81" selection-start-column="72" selection-end-line="81" selection-end-column="72" />
-              <folding>
-                <element signature="e#4417#4443#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -84,7 +29,7 @@
       <file leaf-file-name="AlerteRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Repository/AlerteRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
+            <state relative-caret-position="720">
               <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
             </state>
           </provider>
@@ -93,11 +38,10 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/alerte/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
+            <state relative-caret-position="2592">
               <caret line="108" column="46" selection-start-line="108" selection-start-column="42" selection-end-line="108" selection-end-column="46" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
-                <element signature="e#9418#13584#0#HTML" />
                 <element signature="e#14619#14630#0#Twig" expanded="true" />
               </folding>
             </state>
@@ -107,15 +51,8 @@
       <file leaf-file-name="ALertController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/ALertController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-496">
-              <caret line="150" column="36" selection-start-line="150" selection-start-column="36" selection-end-line="150" selection-end-column="36" />
-              <folding>
-                <element signature="e#34#56#0#PHP" expanded="true" />
-                <element signature="e#3152#3176#0#PHP" expanded="true" />
-                <element signature="e#5938#5951#1#PHP" expanded="true" />
-                <element signature="e#5338#5366#0#PHP" expanded="true" />
-                <element signature="e#7060#7083#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="264">
+              <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -123,7 +60,7 @@
       <file leaf-file-name="sendAlert.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/alerte/sendAlert.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
+            <state relative-caret-position="2904">
               <caret line="121" column="55" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
@@ -135,7 +72,7 @@
       <file leaf-file-name="ALertSearch.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/ALertSearch.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
+            <state relative-caret-position="264">
               <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
             </state>
           </provider>
@@ -144,17 +81,8 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/alerte/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
+            <state relative-caret-position="2616">
               <caret line="109" column="35" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
-              <folding>
-                <element signature="e#12#26#0#Twig" expanded="true" />
-                <element signature="e#5368#5418#0#HTML" expanded="true" />
-                <element signature="e#6656#6662#1#HTML" expanded="true" />
-                <element signature="e#6908#6914#0#HTML" expanded="true" />
-                <element signature="e#7029#7035#0#HTML" expanded="true" />
-                <element signature="e#7428#7434#0#HTML" expanded="true" />
-                <element signature="e#7721#7727#0#HTML" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -162,22 +90,8 @@
       <file leaf-file-name="alerte.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/alerte/alerte.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
+            <state relative-caret-position="2904">
               <caret line="121" column="77" selection-start-line="121" selection-start-column="77" selection-end-line="121" selection-end-column="77" />
-              <folding>
-                <element signature="e#12#26#0#Twig" expanded="true" />
-                <element signature="e#5832#5882#0#HTML" expanded="true" />
-                <element signature="e#6099#6145#0#HTML" expanded="true" />
-                <element signature="e#6158#6244#0#HTML" />
-                <element signature="e#7038#7044#0#HTML" expanded="true" />
-                <element signature="e#7044#7050#0#HTML" expanded="true" />
-                <element signature="e#7745#7756#0#Twig" expanded="true" />
-                <element signature="e#7776#7782#0#HTML" expanded="true" />
-                <element signature="e#7896#7916#0#HTML" expanded="true" />
-                <element signature="e#8370#8380#0#Twig" expanded="true" />
-                <element signature="e#8397#8403#1#HTML" expanded="true" />
-                <element signature="e#8659#8669#0#Twig" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -185,7 +99,7 @@
       <file leaf-file-name="Alerte.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/Alerte.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="1752">
               <caret line="73" column="33" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
             </state>
           </provider>
@@ -194,7 +108,7 @@
       <file leaf-file-name="Version20190406010642.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190406010642.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
+            <state relative-caret-position="744">
               <caret line="32" column="63" selection-start-line="32" selection-start-column="63" selection-end-line="32" selection-end-column="63" />
             </state>
           </provider>
@@ -455,47 +369,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Projet-Fret-Online" type="b2602c69:ProjectViewProjectNode" />
               <item name="Projet-Fret-Online" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-Fret-Online" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-Fret-Online" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-Fret-Online" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-Fret-Online" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-Fret-Online" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-Fret-Online" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-Fret-Online" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-Fret-Online" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Form" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-Fret-Online" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-Fret-Online" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-Fret-Online" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-Fret-Online" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projet-Fret-Online" type="b2602c69:ProjectViewProjectNode" />
@@ -548,7 +428,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -635,12 +514,21 @@
       <workItem from="1553945622117" duration="11390000" />
       <workItem from="1554153570401" duration="42000" />
       <workItem from="1554393502450" duration="25000" />
-      <workItem from="1554393881561" duration="79556000" />
+      <workItem from="1554393881561" duration="81876000" />
+      <workItem from="1555027305688" duration="684000" />
     </task>
+    <task id="LOCAL-00001" summary="New version">
+      <created>1554547617411</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1554547617411</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="828260000" />
+    <option name="totallyTimeSpent" value="831264000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -664,7 +552,7 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.30044842" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29895365" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="10" />
@@ -704,9 +592,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
-          <folding>
-            <element signature="e#34#60#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -721,69 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="614" column="14" selection-start-line="614" selection-start-column="14" selection-end-line="614" selection-end-column="14" />
-          <folding>
-            <element signature="n#tr#0;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" />
-            <element signature="e#8567#13282#0#Twig" />
-            <element signature="e#13303#18068#0#Twig" />
-            <element signature="n#style#0;n#td#0;n#tr#3;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#td#0;n#tr#3;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#3;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#3;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#3;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#3;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#3;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#4;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#18089#22917#0#Twig" />
-            <element signature="n#style#0;n#td#0;n#tr#5;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#td#0;n#tr#5;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#5;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#5;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#5;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#5;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#5;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#6;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#22938#27816#0#Twig" />
-            <element signature="n#style#0;n#td#0;n#tr#7;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#td#0;n#tr#7;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#7;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#7;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#7;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#7;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#7;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#8;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#9;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#td#0;n#tr#9;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#9;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#9;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#9;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#9;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#9;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#10;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#11;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#td#0;n#tr#11;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#11;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#11;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#11;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#11;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#11;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#12;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#13;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#td#0;n#tr#13;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#13;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#13;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#13;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#13;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#13;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#14;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#15;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#td#0;n#tr#15;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#15;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#15;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#15;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#15;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#15;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#16;n#table#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -791,10 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="64" column="37" selection-start-line="59" selection-start-column="27" selection-end-line="64" selection-end-column="37" />
-          <folding>
-            <element signature="e#1053#1067#0#Twig" expanded="true" />
-            <element signature="e#1101#1107#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -806,13 +624,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/account.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/abonne/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
@@ -867,10 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="144" column="91" selection-start-line="144" selection-start-column="91" selection-end-line="144" selection-end-column="91" />
-          <folding>
-            <element signature="e#4493#4510#1#PHP" expanded="true" />
-            <element signature="e#7480#7497#1#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -885,15 +693,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="317" column="72" selection-start-line="317" selection-start-column="72" selection-end-line="317" selection-end-column="72" />
-          <folding>
-            <element signature="e#17704#17717#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190401145754.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190401145754.php" />
     <entry file="file://$PROJECT_DIR$/src/Entity/Rechercher.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -908,9 +711,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190405135357.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190405135357.php" />
     <entry file="file://$PROJECT_DIR$/src/Form/AlertSearchType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -922,26 +723,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="98" column="28" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190405155804.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190405184332.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190405155804.php" />
+    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190405184332.php" />
     <entry file="file://$PROJECT_DIR$/src/Entity/SmsSender.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -949,9 +735,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="58" column="66" selection-start-line="58" selection-start-column="66" selection-end-line="58" selection-end-column="66" />
-          <folding>
-            <element signature="e#34#60#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -987,9 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -997,9 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
           <caret line="190" column="14" selection-start-line="181" selection-start-column="8" selection-end-line="190" selection-end-column="14" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1007,9 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="101" column="18" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
-          <folding>
-            <element signature="e#5909#5939#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1017,11 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="147" column="118" selection-start-line="147" selection-start-column="118" selection-end-line="147" selection-end-column="118" />
-          <folding>
-            <element signature="e#9397#9403#0#Twig" expanded="true" />
-            <element signature="e#9441#9447#0#HTML" expanded="true" />
-            <element signature="e#9445#9451#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,11 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="110" column="14" selection-start-line="96" selection-start-column="8" selection-end-line="110" selection-end-column="14" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1055,9 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="226" column="20" selection-start-line="226" selection-start-column="20" selection-end-line="226" selection-end-column="20" />
-          <folding>
-            <element signature="e#33#56#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1065,61 +826,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="126" column="63" selection-start-line="126" selection-start-column="63" selection-end-line="126" selection-end-column="63" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/SendMail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/SendMail.php" />
     <entry file="file://$PROJECT_DIR$/templates/alerte/alerte.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="2904">
           <caret line="121" column="77" selection-start-line="121" selection-start-column="77" selection-end-line="121" selection-end-column="77" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#5832#5882#0#HTML" expanded="true" />
-            <element signature="e#6099#6145#0#HTML" expanded="true" />
-            <element signature="e#6158#6244#0#HTML" />
-            <element signature="e#7038#7044#0#HTML" expanded="true" />
-            <element signature="e#7044#7050#0#HTML" expanded="true" />
-            <element signature="e#7745#7756#0#Twig" expanded="true" />
-            <element signature="e#7776#7782#0#HTML" expanded="true" />
-            <element signature="e#7896#7916#0#HTML" expanded="true" />
-            <element signature="e#8370#8380#0#Twig" expanded="true" />
-            <element signature="e#8397#8403#1#HTML" expanded="true" />
-            <element signature="e#8659#8669#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190406010642.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
+        <state relative-caret-position="744">
           <caret line="32" column="63" selection-start-line="32" selection-start-column="63" selection-end-line="32" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/ALertSearch.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
+        <state relative-caret-position="264">
           <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/alerte/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
+        <state relative-caret-position="2592">
           <caret line="108" column="46" selection-start-line="108" selection-start-column="42" selection-end-line="108" selection-end-column="46" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#9418#13584#0#HTML" />
             <element signature="e#14619#14630#0#Twig" expanded="true" />
           </folding>
         </state>
@@ -1127,47 +864,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Alerte.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="1752">
           <caret line="73" column="33" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AbonneController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
+        <state relative-caret-position="1536">
           <caret line="81" column="72" selection-start-line="81" selection-start-column="72" selection-end-line="81" selection-end-column="72" />
-          <folding>
-            <element signature="e#4417#4443#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/AlerteRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
+        <state relative-caret-position="720">
           <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/alerte/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
+        <state relative-caret-position="2616">
           <caret line="109" column="35" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#5368#5418#0#HTML" expanded="true" />
-            <element signature="e#6656#6662#1#HTML" expanded="true" />
-            <element signature="e#6908#6914#0#HTML" expanded="true" />
-            <element signature="e#7029#7035#0#HTML" expanded="true" />
-            <element signature="e#7428#7434#0#HTML" expanded="true" />
-            <element signature="e#7721#7727#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/alerte/sendAlert.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
+        <state relative-caret-position="2904">
           <caret line="121" column="55" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="true" />
@@ -1177,15 +902,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ALertController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-496">
-          <caret line="150" column="36" selection-start-line="150" selection-start-column="36" selection-end-line="150" selection-end-column="36" />
-          <folding>
-            <element signature="e#34#56#0#PHP" expanded="true" />
-            <element signature="e#3152#3176#0#PHP" expanded="true" />
-            <element signature="e#5938#5951#1#PHP" expanded="true" />
-            <element signature="e#5338#5366#0#PHP" expanded="true" />
-            <element signature="e#7060#7083#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="264">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
         </state>
       </provider>
     </entry>
